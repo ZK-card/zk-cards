@@ -1,6 +1,6 @@
 # ZK Card Game
 
-An educational card game focused on Zero-Knowledge technologies.
+An educational card game focused on Zero-Knowledge technologies. Play on : https://zk-cards.netlify.app/
 
 ![ZK Card Game](worlds.png)
 
