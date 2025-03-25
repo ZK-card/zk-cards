@@ -1,0 +1,20 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#fef3c7" />
+  
+  <!-- Marketplace Building -->
+  <path d="M30 40 L50 25 L70 40 L70 70 L30 70 Z" fill="#f59e0b" />
+  <rect x="30" y="40" width="40" height="30" fill="#fef3c7" />
+  
+  <!-- Building Columns -->
+  <rect x="35" y="40" width="4" height="30" fill="#f59e0b" />
+  <rect x="48" y="40" width="4" height="30" fill="#f59e0b" />
+  <rect x="61" y="40" width="4" height="30" fill="#f59e0b" />
+  
+  <!-- Data Lock -->
+  <rect x="43" y="50" width="14" height="12" rx="2" fill="#f59e0b" />
+  <circle cx="50" cy="54" r="2" fill="#fef3c7" />
+  <rect x="49" y="54" width="2" height="5" fill="#fef3c7" />
+  
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#f59e0b">Private Data Marketplace</text>
+</svg>

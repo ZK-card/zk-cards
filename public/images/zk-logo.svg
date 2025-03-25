@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="80" viewBox="0 0 240 80">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Card Background -->
+  <rect x="10" y="10" width="60" height="60" rx="6" ry="6" fill="white" stroke="url(#logoGradient)" stroke-width="3" />
+  
+  <!-- ZK Letters -->
+  <text x="40" y="48" font-family="Arial" font-size="30" font-weight="bold" fill="url(#logoGradient)" text-anchor="middle">ZK</text>
+  
+  <!-- Card Game Text -->
+  <text x="140" y="35" font-family="Arial" font-size="24" font-weight="bold" fill="white" text-anchor="middle">CARD</text>
+  <text x="140" y="60" font-family="Arial" font-size="24" font-weight="bold" fill="white" text-anchor="middle">GAME</text>
+  
+  <!-- Decorative Elements -->
+  <circle cx="200" cy="25" r="8" fill="#10b981" />
+  <circle cx="220" cy="25" r="8" fill="#f97316" />
+  <circle cx="200" cy="55" r="8" fill="#f59e0b" />
+  <circle cx="220" cy="55" r="8" fill="#ec4899" />
+</svg>

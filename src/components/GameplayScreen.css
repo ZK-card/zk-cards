@@ -1,0 +1,272 @@
+.gameplay-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f1f5f9;
+}
+
+/* Header Section */
+.gameplay-screen__header {
+  background-color: #4f46e5;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.gameplay-screen__scenario-info h1 {
+  font-size: 1.5rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.gameplay-screen__scenario-info p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.gameplay-screen__actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.gameplay-screen__exit-button,
+.gameplay-screen__hint-button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+}
+
+.gameplay-screen__exit-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.gameplay-screen__exit-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.gameplay-screen__hint-button {
+  background-color: #818cf8;
+  color: white;
+}
+
+.gameplay-screen__hint-button:hover {
+  background-color: #6366f1;
+}
+
+.gameplay-screen__hint-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Main content layout */
+.gameplay-screen__content {
+  display: flex;
+  flex: 1;
+  padding: 1.5rem;
+  gap: 1.5rem;
+}
+
+/* Game board container */
+.gameplay-screen__board-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Controls */
+.gameplay-screen__controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-top: 1px solid #f1f5f9;
+}
+
+.gameplay-screen__submit-button,
+.gameplay-screen__reset-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gameplay-screen__submit-button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+}
+
+.gameplay-screen__submit-button:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.2);
+}
+
+.gameplay-screen__reset-button {
+  background-color: white;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+.gameplay-screen__reset-button:hover {
+  background-color: #f8fafc;
+}
+
+.gameplay-screen__submit-button:disabled,
+.gameplay-screen__reset-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Updated Hint modal with improved styling */
+.gameplay-screen__hint-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.gameplay-screen__hint-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-width: 550px;
+  width: 90%;
+  animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gameplay-screen__hint-content h3 {
+  color: #4f46e5;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid rgba(79, 70, 229, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.gameplay-screen__hint-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #334155;
+  font-size: 1.1rem;
+}
+
+.gameplay-screen__hint-content button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gameplay-screen__hint-content button:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.3);
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .gameplay-screen__content {
+    flex-direction: column;
+  }
+
+  .gameplay-screen__board-container {
+    min-height: auto;
+  }
+
+  .gameplay-screen__hint-content {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .gameplay-screen__hint-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .gameplay-screen__hint-content p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .gameplay-screen__header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .gameplay-screen__scenario-info {
+    margin-bottom: 1rem;
+  }
+
+  .gameplay-screen__actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .gameplay-screen__content {
+    padding: 1rem;
+  }
+
+  .gameplay-screen__controls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .gameplay-screen__submit-button,
+  .gameplay-screen__reset-button {
+    width: 100%;
+  }
+}

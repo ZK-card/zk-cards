@@ -1,0 +1,21 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#86efac" />
+  
+  <!-- Rolled Paper -->
+  <path d="M30 40 C30 35, 70 35, 70 40 C70 45, 30 45, 30 40 Z" fill="#22c55e" />
+  <path d="M30 40 L30 60 C30 65, 70 65, 70 60 L70 40" fill="none" stroke="#22c55e" stroke-width="5" />
+  
+  <!-- Layer Lines -->
+  <path d="M35 40 L65 40" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M35 45 L65 45" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M35 50 L65 50" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M35 55 L65 55" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M35 60 L65 60" stroke="#eef2ff" stroke-width="1.5" />
+  
+  <!-- ZK Symbol -->
+  <path d="M42 30 L48 30 L42 36 L48 36" stroke="#eef2ff" stroke-width="1.5" fill="none" />
+  <path d="M50 30 L50 36" stroke="#eef2ff" stroke-width="1.5" />
+  
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#22c55e">ZK Rollups</text>
+</svg>

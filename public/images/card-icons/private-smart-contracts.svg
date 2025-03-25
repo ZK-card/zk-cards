@@ -1,0 +1,19 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#a5b4fc" />
+  <rect x="30" y="30" width="40" height="40" rx="3" fill="#4f46e5" />
+  
+  <!-- Lock Symbol -->
+  <rect x="42" y="45" width="16" height="15" rx="2" fill="#eef2ff" />
+  <path d="M46 45 L46 38 A4 4 0 0 1 54 38 L54 45" fill="none" stroke="#eef2ff" stroke-width="2" />
+  
+  <!-- Contract Code Lines -->
+  <path d="M36 35 L45 35" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M36 38 L42 38" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M58 35 L64 35" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M36 65 L47 65" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M50 65 L64 65" stroke="#eef2ff" stroke-width="1.5" />
+  <path d="M36 62 L60 62" stroke="#eef2ff" stroke-width="1.5" />
+  
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#4f46e5">Private Smart Contracts</text>
+</svg>

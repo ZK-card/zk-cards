@@ -1,0 +1,21 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#c4b5fd" />
+  
+  <!-- Ballot Box -->
+  <rect x="35" y="35" width="30" height="30" rx="2" fill="#8b5cf6" />
+  <rect x="45" y="35" width="10" height="5" fill="#eef2ff" />
+  
+  <!-- Ballot being inserted -->
+  <rect x="45" y="25" width="10" height="15" fill="#eef2ff" />
+  
+  <!-- Lock/Shield Symbol - For Anti-Collusion -->
+  <path d="M50 50 L56 50 L56 55 L50 60 L44 55 L44 50 Z" fill="#eef2ff" />
+  <circle cx="50" cy="53" r="2" fill="#8b5cf6" />
+  <path d="M50 55 L50 57" stroke="#8b5cf6" stroke-width="1" />
+  
+  <!-- Chain-broken Symbol for Anti-Collusion -->
+  <path d="M30 65 L36 65 M42 65 L48 65 M54 65 L60 65 M66 65 L72 65" stroke="#eef2ff" stroke-width="3" stroke-linecap="round" />
+  
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#8b5cf6">MACI</text>
+</svg>

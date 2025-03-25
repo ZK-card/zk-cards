@@ -1,0 +1,147 @@
+.tutorial-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-dark), #4338ca, #3730a3);
+  padding: 2rem;
+}
+
+.tutorial-screen__content {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 800px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tutorial-screen__progress {
+  height: 6px;
+  width: 100%;
+  background-color: #e2e8f0;
+}
+
+.tutorial-screen__progress-fill {
+  height: 100%;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.tutorial-screen__step {
+  padding: 2rem;
+}
+
+.tutorial-screen__title {
+  font-size: 2rem;
+  color: var(--primary-dark);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.tutorial-screen__image-container {
+  height: 250px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  background-color: #f3f4f6;
+  overflow: hidden;
+}
+
+.tutorial-screen__image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.tutorial-screen__description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+}
+
+.tutorial-screen__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tutorial-screen__next-button,
+.tutorial-screen__complete-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--button-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tutorial-screen__next-button:hover,
+.tutorial-screen__complete-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.tutorial-screen__complete-button {
+  background-color: var(--success);
+}
+
+.tutorial-screen__complete-button:hover {
+  background-color: #0e9f6e;
+}
+
+.tutorial-screen__skip-button {
+  background-color: transparent;
+  color: var(--text-dark);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--button-radius);
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tutorial-screen__skip-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .tutorial-screen {
+    padding: 1rem;
+  }
+  
+  .tutorial-screen__step {
+    padding: 1.5rem;
+  }
+  
+  .tutorial-screen__title {
+    font-size: 1.75rem;
+  }
+  
+  .tutorial-screen__image-placeholder {
+    height: 200px;
+  }
+  
+  .tutorial-screen__description {
+    font-size: 1rem;
+  }
+  
+  .tutorial-screen__buttons {
+    flex-direction: column;
+  }
+  
+  .tutorial-screen__next-button,
+  .tutorial-screen__complete-button,
+  .tutorial-screen__skip-button {
+    width: 100%;
+  }
+}

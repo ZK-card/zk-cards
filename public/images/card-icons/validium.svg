@@ -1,0 +1,19 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#a7f3d0" />
+  
+  <!-- Data Structure -->
+  <rect x="30" y="40" width="40" height="20" rx="2" fill="#10b981" />
+  <path d="M35 60 L35 70 L65 70 L65 60" stroke="#10b981" stroke-width="2" fill="none" />
+  <path d="M45 40 L45 30 L55 30 L55 40" stroke="#10b981" stroke-width="2" fill="none" />
+  
+  <!-- Data Symbol -->
+  <circle cx="50" cy="50" r="8" fill="#eef2ff" />
+  <path d="M46 50 L50 46 L54 50 L50 54 Z" fill="#10b981" />
+  
+  <!-- Connection Lines -->
+  <path d="M45 30 L55 30" stroke="#10b981" stroke-width="2" />
+  <path d="M35 70 L65 70" stroke="#10b981" stroke-width="2" />
+  
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#10b981">Validium</text>
+</svg>

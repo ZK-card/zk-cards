@@ -1,0 +1,24 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#a7f3d0" />
+  
+  <!-- Passport Book -->
+  <path d="M30 30 L70 30 L70 70 L30 70 Z" fill="#10b981" />
+  <path d="M30 30 L50 30 L50 70 L30 70 Z" fill="#d1fae5" />
+  <path d="M50 30 L70 30 L70 70 L50 70 Z" fill="#10b981" />
+  
+  <!-- Identity Chip -->
+  <rect x="35" y="40" width="10" height="10" rx="2" fill="#10b981" />
+  <path d="M37 43 L43 43 M37 45 L43 45 M37 47 L43 47" stroke="#d1fae5" stroke-width="1" />
+  
+  <!-- Person Silhouette -->
+  <circle cx="60" cy="45" r="5" fill="#d1fae5" />
+  <path d="M55 55 L65 55 L65 60 L55 60 Z" fill="#d1fae5" />
+  
+  <!-- Lock Symbol For Privacy -->
+  <rect x="55" y="52" width="10" height="8" rx="1" fill="#d1fae5" />
+  <circle cx="60" cy="54" r="1.5" fill="#10b981" />
+  <rect x="59" y="54" width="2" height="3" fill="#10b981" />
+  
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#10b981">OpenPassport</text>
+</svg>

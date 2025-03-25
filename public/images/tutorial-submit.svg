@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <rect width="400" height="200" fill="#f8fafc" rx="10" ry="10" />
+  
+  <!-- Solution Panel -->
+  <g transform="translate(200, 80)">
+    <rect x="-150" y="-40" width="300" height="80" rx="8" ry="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" />
+    
+    <!-- Cards in solution -->
+    <g transform="translate(-110, 0)">
+      <rect x="-15" y="-25" width="30" height="50" rx="3" ry="3" fill="white" stroke="#4f46e5" stroke-width="2" />
+      <rect x="-10" y="-20" width="20" height="5" rx="1" ry="1" fill="#4f46e5" />
+    </g>
+    
+    <g transform="translate(-50, 0)">
+      <rect x="-15" y="-25" width="30" height="50" rx="3" ry="3" fill="white" stroke="#10b981" stroke-width="2" />
+      <rect x="-10" y="-20" width="20" height="5" rx="1" ry="1" fill="#10b981" />
+    </g>
+    
+    <g transform="translate(10, 0)">
+      <rect x="-15" y="-25" width="30" height="50" rx="3" ry="3" fill="white" stroke="#f97316" stroke-width="2" />
+      <rect x="-10" y="-20" width="20" height="5" rx="1" ry="1" fill="#f97316" />
+    </g>
+    
+    <g transform="translate(70, 0)">
+      <rect x="-15" y="-25" width="30" height="50" rx="3" ry="3" fill="white" stroke="#6366f1" stroke-width="2" />
+      <rect x="-10" y="-20" width="20" height="5" rx="1" ry="1" fill="#6366f1" />
+    </g>
+    
+    <g transform="translate(130, 0)">
+      <rect x="-15" y="-25" width="30" height="50" rx="3" ry="3" fill="white" stroke="#ec4899" stroke-width="2" />
+      <rect x="-10" y="-20" width="20" height="5" rx="1" ry="1" fill="#ec4899" />
+    </g>
+  </g>
+  
+  <!-- Submit Button -->
+  <g transform="translate(200, 150)">
+    <rect x="-70" y="-15" width="140" height="30" rx="5" ry="5" fill="#4f46e5" />
+    <text x="0" y="5" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Submit Solution</text>
+  </g>
+  
+  <!-- Check Mark Icon -->
+  <g transform="translate(300, 50)">
+    <circle cx="0" cy="0" r="25" fill="#10b981" />
+    <path d="M-10,0 L-3,8 L10,-8" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  
+  <text x="200" y="180" font-family="Arial" font-size="16" fill="#0f172a" text-anchor="middle">Submit your solution</text>
+</svg>

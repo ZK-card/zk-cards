@@ -1,0 +1,12 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#86efac" />
+  <path d="M30 30 L70 30 L70 70 L30 70 Z" fill="#22c55e" />
+  <path d="M35 45 L65 45 L65 55 L35 55 Z" fill="#eef2ff" />
+  <path d="M40 35 L45 40 L40 45 L35 40 Z" fill="#eef2ff" />
+  <path d="M60 35 L65 40 L60 45 L55 40 Z" fill="#eef2ff" />
+  <path d="M40 55 L45 60 L40 65 L35 60 Z" fill="#eef2ff" />
+  <path d="M60 55 L65 60 L60 65 L55 60 Z" fill="#eef2ff" />
+  <text x="50" y="51" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="8" fill="#22c55e">ZK</text>
+  <text x="50" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#22c55e">zkSync</text>
+</svg>

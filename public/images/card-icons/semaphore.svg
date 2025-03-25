@@ -1,0 +1,10 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#cbd5e1" />
+  <circle cx="50" cy="30" r="10" fill="#64748b" />
+  <rect x="40" y="45" width="20" height="35" fill="#64748b" />
+  <circle cx="50" cy="30" r="6" fill="#0f0" />
+  <circle cx="50" cy="55" r="6" fill="#ff0" />
+  <circle cx="50" cy="70" r="6" fill="#f00" />
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#64748b">Semaphore</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#818cf8" />
+  <path d="M30 30 L70 30 L70 70 L30 70 Z" fill="#4f46e5" />
+  <path d="M40 40 L60 40 L60 60 L40 60 Z" fill="#eef2ff" stroke="#4f46e5" stroke-width="2" />
+  <path d="M35 50 L45 40 M55 40 L65 50 M65 50 L55 60 M45 60 L35 50" stroke="#eef2ff" stroke-width="2" />
+  <text x="50" y="50" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#4f46e5">ZK-SNARKs</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#c4b5fd" />
+  <rect x="30" y="35" width="40" height="30" rx="2" fill="#8b5cf6" />
+  
+  <!-- Ballot Box Slot -->
+  <rect x="45" y="35" width="10" height="3" fill="#eef2ff" />
+  
+  <!-- Ballot -->
+  <rect x="42" y="25" width="16" height="12" fill="#eef2ff" stroke="#8b5cf6" stroke-width="1" />
+  <path d="M45 29 L48 33 L54 26" stroke="#8b5cf6" stroke-width="1.5" fill="none" />
+  
+  <!-- Person Silhouettes -->
+  <circle cx="25" cy="50" r="6" fill="#eef2ff" />
+  <path d="M20 65 L30 65 L30 57 L20 57 Z" fill="#eef2ff" />
+  
+  <circle cx="75" cy="50" r="6" fill="#eef2ff" />
+  <path d="M70 65 L80 65 L80 57 L70 57 Z" fill="#eef2ff" />
+  
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#8b5cf6">Private Voting</text>
+</svg>

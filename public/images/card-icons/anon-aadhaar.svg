@@ -1,0 +1,24 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#fca5a5" />
+  
+  <!-- Aadhaar Logo (Simplified) -->
+  <circle cx="50" cy="50" r="20" fill="#ef4444" />
+  <circle cx="50" cy="50" r="15" fill="#eef2ff" />
+  
+  <!-- Biometric Fingerprint Pattern (Stylized) -->
+  <path d="M45 50 Q50 40, 55 50" stroke="#ef4444" stroke-width="2" fill="none" />
+  <path d="M42 50 Q50 35, 58 50" stroke="#ef4444" stroke-width="2" fill="none" />
+  <path d="M40 50 Q50 30, 60 50" stroke="#ef4444" stroke-width="2" fill="none" />
+  
+  <!-- Identity Mask - Representing Anonymity -->
+  <circle cx="44" cy="45" r="3" fill="#ef4444" />
+  <circle cx="56" cy="45" r="3" fill="#ef4444" />
+  <path d="M42 55 Q50 60, 58 55" stroke="#ef4444" stroke-width="2" fill="none" />
+  
+  <!-- ZK Symbol -->
+  <path d="M38 30 L42 30 L38 34 L42 34" stroke="#eef2ff" stroke-width="1.5" fill="none" />
+  <path d="M44 30 L44 34" stroke="#eef2ff" stroke-width="1.5" />
+  
+  <text x="50" y="85" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#ef4444">Anon-Aadhaar</text>
+</svg>

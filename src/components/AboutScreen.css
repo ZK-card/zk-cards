@@ -1,0 +1,111 @@
+.about-screen {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--background-light);
+  padding: 2rem;
+}
+
+.about-screen__content {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  max-width: 800px;
+  width: 100%;
+}
+
+.about-screen__title {
+  font-size: 2.5rem;
+  color: var(--primary-dark);
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.about-screen__section {
+  margin-bottom: 2rem;
+}
+
+.about-screen__section h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin: 0 0 1rem 0;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.about-screen__section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin: 0 0 1rem 0;
+}
+
+.about-screen__section ul {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.about-screen__section li {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.about-screen__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.about-screen__version {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+}
+
+.about-screen__back-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--button-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.about-screen__back-button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .about-screen {
+    padding: 1rem;
+  }
+  
+  .about-screen__content {
+    padding: 1.5rem;
+  }
+  
+  .about-screen__title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-screen__section h2 {
+    font-size: 1.3rem;
+  }
+  
+  .about-screen__section p,
+  .about-screen__section li {
+    font-size: 1rem;
+  }
+}

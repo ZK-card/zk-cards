@@ -1,0 +1,8 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" fill="#eef2ff" />
+  <circle cx="50" cy="50" r="35" fill="#93c5fd" />
+  <path d="M50 15 L85 50 L50 85 L15 50 Z" fill="#3b82f6" />
+  <path d="M50 25 L75 50 L50 75 L25 50 Z" fill="#eef2ff" stroke="#3b82f6" stroke-width="2" />
+  <path d="M40 40 L60 60 M40 60 L60 40" stroke="#3b82f6" stroke-width="3" />
+  <text x="50" y="50" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="bold" font-size="6" fill="#3b82f6">ZK-STARKs</text>
+</svg>

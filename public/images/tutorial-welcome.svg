@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#818cf8" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="200" fill="#f8fafc" rx="10" ry="10" />
+  <g transform="translate(200, 100)">
+    <rect x="-100" y="-60" width="200" height="120" rx="8" ry="8" fill="url(#gradient)" />
+    <text x="0" y="-25" font-family="Arial" font-size="22" fill="white" text-anchor="middle">Welcome to</text>
+    <text x="0" y="10" font-family="Arial" font-size="28" font-weight="bold" fill="white" text-anchor="middle">ZK Card Clash</text>
+    <text x="0" y="40" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Learn Zero-Knowledge Technologies</text>
+  </g>
+</svg>

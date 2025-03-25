@@ -1,0 +1,96 @@
+.available-cards {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    max-height: calc(100vh - 10rem);
+    overflow-y: auto;
+    width: 350px;
+    flex-shrink: 0;
+}
+
+.available-cards__title {
+    color: #4f46e5;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 0.5rem;
+}
+
+.available-cards__category {
+    margin-bottom: 1.5rem;
+}
+
+.available-cards__category-title {
+    font-size: 1.1rem;
+    color: #0f172a;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid #6366f1;
+    padding-left: 0.5rem;
+}
+
+.available-cards__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+.available-cards__card {
+    transition: all 0.3s ease;
+    transform-origin: center center;
+    position: relative;
+}
+
+.available-cards__card--used {
+    opacity: 0.5;
+    filter: grayscale(60%);
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+.available-cards__card--selected {
+    transform: scale(1.05);
+}
+
+.available-cards__card--selected .card-simple {
+    box-shadow: 0 0 0 2px #6366f1, 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+
+/* Scrollbar styling */
+.available-cards::-webkit-scrollbar {
+    width: 8px;
+}
+
+.available-cards::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.available-cards::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+}
+
+.available-cards::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .available-cards {
+        width: 100%;
+        max-height: none;
+        margin-top: 1rem;
+    }
+
+    .available-cards__grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    }
+}
+
+/* Modal Styles - Ensure modal appears on top of everything */
+.card-modal-overlay {
+    z-index: 1100;
+}
