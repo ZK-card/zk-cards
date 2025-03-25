@@ -1,10 +1,12 @@
-# ZK Card Clash
+# ZK Card Game
 
 An educational card game focused on Zero-Knowledge technologies.
 
+![ZK Card Game](worlds.png)
+
 ## Overview
 
-ZK Card Clash is an interactive card game that teaches users about Zero-Knowledge technologies through practical challenges. Players solve real-world privacy and verification scenarios by selecting and applying appropriate ZK technology cards.
+ZK Card Game is an interactive card game that teaches users about Zero-Knowledge technologies through practical challenges. Players solve real-world privacy and verification scenarios by selecting and applying appropriate ZK technology cards.
 
 ## Features
 
