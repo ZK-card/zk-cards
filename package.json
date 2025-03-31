@@ -1,0 +1,42 @@
+{
+  "name": "zk-card-clash",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext js,jsx",
+    "lint:fix": "eslint src --ext js,jsx --fix",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "format": "prettier --write 'src/**/*.{js,jsx,css,json}'"
+  },
+  "keywords": [
+    "zk",
+    "card-game",
+    "educational",
+    "react"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "An educational card game focused on Zero-Knowledge technologies",
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-spring": "^9.7.5",
+    "vite": "^6.2.0",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react": "^7.37.4",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.5.2",
+    "vitest": "^3.0.7"
+  }
+}
