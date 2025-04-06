@@ -10,7 +10,7 @@ const useGameStore = create(
     (set, get) => ({
       // Player progress - flattened structure
       completedScenarios: {}, // { scenarioId: { score } }
-      unlockedWorlds: ['math-world', 'world-1'], // Start with first world unlocked
+      unlockedWorlds: ['math-world', 'world-1'], // Start with two worlds unlocked
       tutorialCompleted: false,
       mathTutorialCompleted: false, // Track math tutorial completion
 
