@@ -7,6 +7,7 @@ import TutorialScreen from './components/TutorialScreen';
 import AboutScreen from './components/AboutScreen';
 import WorldCompletionScreen from './components/WorldCompletionScreen';
 import ExpansionPlanScreen from './components/ExpansionPlanScreen';
+import MathWorld from './components/MathWorld';
 import useGameStore from './store/gameStore';
 import scenariosData from './data/scenarios';
 
@@ -139,6 +140,13 @@ function App() {
             onTutorialClick={() => handleNavigate('tutorial')}
             onAboutClick={() => handleNavigate('about')}
             onExpansionPlanClick={() => handleNavigate('expansion-plan')}
+            onMathWorldClick={() => handleNavigate('math-world')}
+          />
+        );
+      case 'math-world':
+        return (
+          <MathWorld
+            onBackClick={handleBackToMainMenu}
           />
         );
       case 'world-selection':
