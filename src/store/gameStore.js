@@ -10,8 +10,9 @@ const useGameStore = create(
     (set, get) => ({
       // Player progress - flattened structure
       completedScenarios: {}, // { scenarioId: { score } }
-      unlockedWorlds: ['world-1'], // Start with first world unlocked
+      unlockedWorlds: ['math-world', 'world-1'], // Start with first world unlocked
       tutorialCompleted: false,
+      mathTutorialCompleted: false, // Track math tutorial completion
 
       // Current game state - simplified
       placedCards: [],
@@ -23,6 +24,9 @@ const useGameStore = create(
 
       // Actions
       completeTutorial: () => set({ tutorialCompleted: true }),
+
+      // New action to mark math tutorial as completed
+      completeMathTutorial: () => set({ mathTutorialCompleted: true }),
 
       completeScenario: (scenarioId, score) => set((state) => ({
         completedScenarios: {
@@ -156,7 +160,8 @@ const useGameStore = create(
       partialize: (state) => ({
         completedScenarios: state.completedScenarios,
         unlockedWorlds: state.unlockedWorlds,
-        tutorialCompleted: state.tutorialCompleted
+        tutorialCompleted: state.tutorialCompleted,
+        mathTutorialCompleted: state.mathTutorialCompleted // Include in persistent storage
       }),
     }
   )

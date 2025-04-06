@@ -1,9 +1,11 @@
+// Updated App.jsx with Math Tutorial integration
 import React, { useState, useEffect } from 'react';
 import MainMenu from './components/MainMenu';
 import WorldSelection from './components/WorldSelection';
 import ScenarioSelection from './components/ScenarioSelection';
 import GameplayScreen from './components/GameplayScreen';
 import TutorialScreen from './components/TutorialScreen';
+import MathTutorialScreen from './components/MathTutorialScreen'; // Import the MathTutorialScreen
 import AboutScreen from './components/AboutScreen';
 import WorldCompletionScreen from './components/WorldCompletionScreen';
 import ExpansionPlanScreen from './components/ExpansionPlanScreen';
@@ -23,8 +25,10 @@ function App() {
   const {
     completedScenarios,
     tutorialCompleted,
+    mathTutorialCompleted, // New state for math tutorial completion
     startScenario,
-    completeScenario
+    completeScenario,
+    completeMathTutorial, // New action to mark math tutorial as completed
   } = useGameStore();
 
   // Check if tutorial has been completed on initial load
@@ -56,7 +60,13 @@ function App() {
 
   const handleWorldSelect = (world) => {
     setSelectedWorld(world);
-    setCurrentScreen('scenario-selection');
+
+    // If selecting the math world and tutorial not completed, show the math tutorial first
+    if (world.id === 'math-world' && !mathTutorialCompleted) {
+      setCurrentScreen('math-tutorial');
+    } else {
+      setCurrentScreen('scenario-selection');
+    }
   };
 
   const handleScenarioSelect = (scenario) => {
@@ -73,12 +83,26 @@ function App() {
 
   const handleBackToWorldSelection = () => {
     setCurrentScreen('world-selection');
-    setSelectedScenario(null);
+    setSelectedWorld(null);
   };
 
   const handleBackToScenarioSelection = () => {
     setCurrentScreen('scenario-selection');
     setSelectedScenario(null);
+  };
+
+  const handleMathTutorialComplete = () => {
+    completeMathTutorial(); // Mark the math tutorial as completed in the store
+    setCurrentScreen('scenario-selection');
+  };
+
+  const handleMathTutorialSkip = () => {
+    completeMathTutorial(); // Mark the math tutorial as completed in the store
+    setCurrentScreen('scenario-selection');
+  };
+
+  const handleRevisitMathTutorial = () => {
+    setCurrentScreen('math-tutorial');
   };
 
   const handleScenarioComplete = (score) => {
@@ -154,6 +178,7 @@ function App() {
             world={selectedWorld}
             onScenarioSelect={handleScenarioSelect}
             onBackClick={handleBackToWorldSelection}
+            onRevisitMathTutorial={selectedWorld?.id === 'math-world' ? handleRevisitMathTutorial : undefined}
           />
         );
       case 'gameplay':
@@ -169,6 +194,13 @@ function App() {
           <TutorialScreen
             onComplete={handleBackToMainMenu}
             onSkip={handleBackToMainMenu}
+          />
+        );
+      case 'math-tutorial':
+        return (
+          <MathTutorialScreen
+            onComplete={handleMathTutorialComplete}
+            onSkip={handleMathTutorialSkip}
           />
         );
       case 'about':
