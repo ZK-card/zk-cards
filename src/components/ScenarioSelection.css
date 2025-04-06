@@ -234,23 +234,100 @@
   .scenario-selection {
     padding: 1.5rem;
   }
-  
+
   .scenario-selection__header h1 {
     font-size: 2rem;
   }
-  
+
   .scenario-selection__header p {
     font-size: 1rem;
   }
-  
+
   .scenario-selection__scenario-header {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .scenario-selection__completion-badge {
     top: auto;
     right: 1rem;
     bottom: 1rem;
+  }
+}
+
+.scenario-selection__tutorial-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--button-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+}
+
+.scenario-selection__tutorial-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(99, 102, 241, 0.3);
+}
+
+.scenario-selection__tutorial-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+}
+
+/* Add to src/components/ScenarioSelection.css */
+
+.scenario-selection__coming-soon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  width: 100%;
+}
+
+.scenario-selection__coming-soon-content {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+  padding: 2rem;
+  text-align: center;
+  max-width: 600px;
+  border: 2px dashed var(--primary-light);
+  animation: pulse 3s infinite alternate;
+}
+
+.scenario-selection__coming-soon-content h2 {
+  color: var(--primary-dark);
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+}
+
+.scenario-selection__coming-soon-content p {
+  color: var(--text-dark);
+  line-height: 1.6;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.scenario-selection__coming-soon-icon {
+  color: var(--primary-color);
+  margin: 0 auto;
+  width: 64px;
+  height: 64px;
+  opacity: 0.8;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+  }
+
+  100% {
+    box-shadow: 0 4px 30px rgba(99, 102, 241, 0.4);
   }
 }

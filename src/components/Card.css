@@ -506,3 +506,19 @@ body.modal-open {
     min-width: 80px;
   }
 }
+
+
+.card-modal__interactive {
+  margin: 0 auto 1.5rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .card-modal__interactive {
+    width: 450px;
+  }
+}

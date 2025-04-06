@@ -11,9 +11,10 @@ import './ScenarioSelection.css';
  * @param {Object} props.world - Selected world data
  * @param {Function} props.onScenarioSelect - Handler for scenario selection
  * @param {Function} props.onBackClick - Handler for back button click
+ * @param {Function} props.onRevisitMathTutorial - Handler for revisiting math tutorial (optional)
  * @returns {React.Element} The rendered ScenarioSelection component
  */
-function ScenarioSelection({ world, onScenarioSelect, onBackClick }) {
+function ScenarioSelection({ world, onScenarioSelect, onBackClick, onRevisitMathTutorial }) {
   // Get completedScenarios directly from the flattened store structure
   const { completedScenarios } = useGameStore();
   const [scenarios, setScenarios] = useState([]);
@@ -86,56 +87,84 @@ function ScenarioSelection({ world, onScenarioSelect, onBackClick }) {
     ));
   };
 
+  // Determine if this is the math world
+  const isMathWorld = world?.id === 'math-world';
+
   return (
     <animated.div className="scenario-selection" style={pageSpring}>
       <div className="scenario-selection__header">
         <h1>{world?.name}</h1>
         <p>{world?.description}</p>
+
+        {/* Math Tutorial Revisit Button */}
+        {isMathWorld && onRevisitMathTutorial && (
+          <button
+            className="scenario-selection__tutorial-button"
+            onClick={onRevisitMathTutorial}
+          >
+            Revisit Math Tutorial
+          </button>
+        )}
       </div>
 
-      <div className="scenario-selection__scenarios">
-        {scenarios.map((scenario, index) => (
-          <div
-            key={scenario.id}
-            className={`scenario-selection__scenario ${scenario.isLocked ? 'scenario-selection__scenario--locked' : ''} ${scenario.isCompleted ? 'scenario-selection__scenario--completed' : ''}`}
-            onClick={() => handleScenarioSelect(scenario)}
-          >
-            <div className="scenario-selection__scenario-content">
-              <div className="scenario-selection__scenario-header">
-                <h2>
-                  <span className="scenario-selection__scenario-number">{index + 1}</span>
-                  {scenario.name}
-                </h2>
-
-                <div className="scenario-selection__difficulty">
-                  {renderDifficultyStars(scenario.difficulty)}
-                </div>
-              </div>
-
-              <p className="scenario-selection__scenario-description">{scenario.description}</p>
-
-              {scenario.isCompleted && (
-                <div className="scenario-selection__completion-badge">
-                  <div className="scenario-selection__checkmark">✓</div>
-                  <span className="scenario-selection__score">{getScenarioScore(scenario.id)}%</span>
-                </div>
-              )}
-
-              {scenario.isLocked && (
-                <div className="scenario-selection__locked-overlay">
-                  <div className="scenario-selection__lock-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                      <path fill="none" d="M0 0h24v24H0z" />
-                      <path d="M19 10h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 1 1 14 0v1zm-2 0V9A5 5 0 0 0 7 9v1h10zm-6 4v4h2v-4h-2z" fill="rgba(255,255,255,0.8)" />
-                    </svg>
-                  </div>
-                  <p>Complete previous scenario with 80% or higher score to unlock</p>
-                </div>
-              )}
+      {isMathWorld ? (
+        <div className="scenario-selection__coming-soon">
+          <div className="scenario-selection__coming-soon-content">
+            <h2>Interactive Math Challenges Coming Soon!</h2>
+            <p>We're developing hands-on mathematical challenges that will help you understand the foundational concepts of Zero-Knowledge proofs. Stay tuned!</p>
+            <div className="scenario-selection__coming-soon-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64">
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-8h4v2h-6V7h2v5z" fill="currentColor" />
+              </svg>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="scenario-selection__scenarios">
+          {scenarios.map((scenario, index) => (
+            <div
+              key={scenario.id}
+              className={`scenario-selection__scenario ${scenario.isLocked ? 'scenario-selection__scenario--locked' : ''} ${scenario.isCompleted ? 'scenario-selection__scenario--completed' : ''}`}
+              onClick={() => handleScenarioSelect(scenario)}
+            >
+              <div className="scenario-selection__scenario-content">
+                <div className="scenario-selection__scenario-header">
+                  <h2>
+                    <span className="scenario-selection__scenario-number">{index + 1}</span>
+                    {scenario.name}
+                  </h2>
+
+                  <div className="scenario-selection__difficulty">
+                    {renderDifficultyStars(scenario.difficulty)}
+                  </div>
+                </div>
+
+                <p className="scenario-selection__scenario-description">{scenario.description}</p>
+
+                {scenario.isCompleted && (
+                  <div className="scenario-selection__completion-badge">
+                    <div className="scenario-selection__checkmark">✓</div>
+                    <span className="scenario-selection__score">{getScenarioScore(scenario.id)}%</span>
+                  </div>
+                )}
+
+                {scenario.isLocked && (
+                  <div className="scenario-selection__locked-overlay">
+                    <div className="scenario-selection__lock-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z" />
+                        <path d="M19 10h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 1 1 14 0v1zm-2 0V9A5 5 0 0 0 7 9v1h10zm-6 4v4h2v-4h-2z" fill="rgba(255,255,255,0.8)" />
+                      </svg>
+                    </div>
+                    <p>Complete previous scenario with 80% or higher score to unlock</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className="scenario-selection__footer">
         <button className="scenario-selection__back-button" onClick={onBackClick}>
@@ -154,6 +183,7 @@ ScenarioSelection.propTypes = {
   }),
   onScenarioSelect: PropTypes.func.isRequired,
   onBackClick: PropTypes.func.isRequired,
+  onRevisitMathTutorial: PropTypes.func,
 };
 
 export default ScenarioSelection;

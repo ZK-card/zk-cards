@@ -1,0 +1,173 @@
+.math-tutorial-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4338ca, #3730a3);
+    padding: 2rem;
+}
+
+.math-tutorial-screen__content {
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    position: relative;
+}
+
+.math-tutorial-screen__progress {
+    height: 6px;
+    width: 100%;
+    background-color: #e2e8f0;
+}
+
+.math-tutorial-screen__progress-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.math-tutorial-screen__step {
+    padding: 2rem;
+}
+
+.math-tutorial-screen__title {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.math-tutorial-screen__explanation {
+    margin-bottom: 1.5rem;
+}
+
+.math-tutorial-screen__text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.math-tutorial-screen__interactive {
+    margin: 2rem 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #f8fafc;
+}
+
+.math-tutorial-screen__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.math-tutorial-screen__next-button,
+.math-tutorial-screen__complete-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--button-radius);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.math-tutorial-screen__next-button:hover,
+.math-tutorial-screen__complete-button:hover {
+    background-color: var(--primary-dark);
+}
+
+.math-tutorial-screen__complete-button {
+    background-color: var(--success);
+}
+
+.math-tutorial-screen__complete-button:hover {
+    background-color: #0e9f6e;
+}
+
+.math-tutorial-screen__previous-button {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: 1px solid #cbd5e1;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--button-radius);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.math-tutorial-screen__previous-button:hover {
+    background-color: #f1f5f9;
+}
+
+.math-tutorial-screen__previous-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+.math-tutorial-screen__skip-button {
+    background-color: transparent;
+    color: var(--text-dark);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--button-radius);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.math-tutorial-screen__skip-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Formula highlight styling */
+.math-formula {
+    font-family: var(--font-mono);
+    background-color: #f8fafc;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0.5rem 0;
+    font-weight: 600;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .math-tutorial-screen {
+        padding: 1rem;
+    }
+
+    .math-tutorial-screen__step {
+        padding: 1.5rem;
+    }
+
+    .math-tutorial-screen__title {
+        font-size: 1.75rem;
+    }
+
+    .math-tutorial-screen__text {
+        font-size: 1rem;
+    }
+
+    .math-tutorial-screen__buttons {
+        flex-direction: column;
+    }
+
+    .math-tutorial-screen__next-button,
+    .math-tutorial-screen__complete-button,
+    .math-tutorial-screen__previous-button,
+    .math-tutorial-screen__skip-button {
+        width: 100%;
+    }
+}
