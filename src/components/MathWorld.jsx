@@ -96,7 +96,7 @@ const MathWorld = ({ onBackClick }) => {
         {mathModules.map((module, index) => (
           <div 
             key={module.id}
-            className={`math-world__module ${!module.unlocked ? 'math-world__module--locked' : ''}`}
+            className={`math-world__module ${module.unlocked ? '' : 'math-world__module--locked'}`}
             onClick={() => module.unlocked && setSelectedModule(module)}
           >
             <div className="math-world__module-icon">{module.icon}</div>
