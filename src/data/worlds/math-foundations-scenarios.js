@@ -7,10 +7,46 @@ const mathFoundationsScenarios = {
     description: 'Master the mathematical foundations essential for understanding Zero-Knowledge proofs',
     scenarios: [
         {
+            id: 'number-theory',
+            name: 'Number Theory Essentials',
+            description: 'Learn fundamental number theory concepts like GCD, LCM, and modular inverses used in Zero-Knowledge cryptography.',
+            difficulty: 1,
+            hints: [
+                {
+                    stage: 'number-theory-basics',
+                    text: "Number theory is the foundation of modern cryptography. Start with understanding the greatest common divisor (GCD) and least common multiple (LCM) of two numbers."
+                },
+                {
+                    stage: 'modular-operations',
+                    text: "Modular arithmetic and finding modular inverses are critical for operations in finite fields, which are used extensively in ZK proofs."
+                }
+            ],
+            stages: [
+                {
+                    id: 'number-theory-basics',
+                    name: 'Number Theory Fundamentals',
+                    description: 'Master key number theory concepts like GCD, LCM, and coprime numbers that form the building blocks of cryptography.',
+                    component: 'NumberTheoryChallenge',
+                    componentProps: {}
+                }
+            ],
+            completionCriteria: {
+                minimumScore: 80
+            },
+            feedbackContent: {
+                optimal: "Excellent work! Your understanding of number theory fundamentals shows you've mastered these essential concepts. These mathematical principles form the bedrock upon which Zero-Knowledge protocols are built.",
+                good: "Good job with number theory! These concepts are foundational to cryptography and understanding how Zero-Knowledge proofs operate in finite fields.",
+                suboptimal: "You're making progress with number theory, but there's room for improvement. These concepts are crucial for understanding the mathematical foundations of ZK proofs.",
+                incorrect: "Number theory can be challenging, but it's worth mastering as these concepts are fundamental to cryptography and Zero-Knowledge proofs."
+            },
+            type: 'number-theory'
+        },
+        {
             id: 'modular-arithmetic',
             name: 'Modular Arithmetic Fundamentals',
             description: 'Learn and practice modular arithmetic operations, a critical foundation for ZK cryptography.',
             difficulty: 1,
+            type: 'finite-field',
             hints: [
                 {
                     stage: 'understand-modular',
@@ -57,6 +93,7 @@ const mathFoundationsScenarios = {
             name: 'Elliptic Curve Operations',
             description: 'Explore elliptic curves and their operations, which form the backbone of many modern cryptographic protocols.',
             difficulty: 2,
+            type: 'elliptic-curve',
             hints: [
                 {
                     stage: 'curve-exploration',
@@ -99,6 +136,7 @@ const mathFoundationsScenarios = {
             name: 'Polynomial Commitments',
             description: 'Learn how polynomials are used to create commitments in ZK systems, allowing for efficient verification of computational claims.',
             difficulty: 3,
+            type: 'polynomial',
             hints: [
                 {
                     stage: 'polynomial-basics',
@@ -141,6 +179,7 @@ const mathFoundationsScenarios = {
             name: 'Cryptographic Hash Functions',
             description: 'Explore the properties of hash functions that make them essential building blocks for ZK protocols and commitment schemes.',
             difficulty: 3,
+            type: 'hash-function',
             hints: [
                 {
                     stage: 'hash-properties',
@@ -183,6 +222,7 @@ const mathFoundationsScenarios = {
             name: 'The Discrete Logarithm Problem',
             description: 'Understand the discrete logarithm problem, a fundamental computational hardness assumption underlying many cryptographic protocols.',
             difficulty: 4,
+            type: 'discrete-log',
             hints: [
                 {
                     stage: 'discrete-log-basics',

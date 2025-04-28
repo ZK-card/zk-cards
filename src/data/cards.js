@@ -3,6 +3,86 @@
  * Updated to focus on ZK technologies rather than specific implementations
  */
 const cards = [
+  // Math Concepts Category
+  {
+    id: 'modular-addition',
+    name: 'Modular Addition',
+    category: 'Math Concepts',
+    description: 'Addition in a modular system, where numbers wrap around after reaching the modulus.',
+    capabilities: [
+      'Understand addition in finite, cyclical systems',
+      'Calculate (a + b) mod n efficiently',
+      'Visualize the "clock arithmetic" model',
+      'Apply to cryptographic protocols'
+    ],
+    limitations: [
+      'Must specify the modulus clearly',
+      'Does not directly reveal mathematical insights without exploration',
+      'Requires understanding of the underlying group structure'
+    ],
+    compatibilityTags: ['modular-arithmetic', 'fundamental-math', 'cryptography-basics'],
+    attributes: {
+      learnability: 90,
+      applicability: 95,
+      fundamentality: 100,
+      complexity: 30
+    },
+    image: 'modular-addition.svg',
+    tooltipContent: 'Modular addition involves computing (a + b) mod n, which is the remainder when (a + b) is divided by n. It\'s like a clock where after reaching 12, we start again at 1.'
+  },
+  {
+    id: 'modular-multiplication',
+    name: 'Modular Multiplication',
+    category: 'Math Concepts',
+    description: 'Multiplication in a modular system, where the product is reduced by taking the remainder when divided by the modulus.',
+    capabilities: [
+      'Understand multiplication in finite groups',
+      'Calculate (a × b) mod n efficiently',
+      'Identify patterns in modular multiplication tables',
+      'Apply to encryption algorithms like RSA'
+    ],
+    limitations: [
+      'Must specify the modulus clearly',
+      'Not all elements have multiplicative inverses',
+      'Computation can be intensive for large numbers'
+    ],
+    compatibilityTags: ['modular-arithmetic', 'fundamental-math', 'cryptography-basics'],
+    attributes: {
+      learnability: 85,
+      applicability: 95,
+      fundamentality: 100,
+      complexity: 45
+    },
+    image: 'modular-multiplication.svg',
+    tooltipContent: 'Modular multiplication involves computing (a × b) mod n, which is the remainder when (a × b) is divided by n. This operation is fundamental to many cryptographic algorithms.'
+  },
+  {
+    id: 'modular-exponentiation',
+    name: 'Modular Exponentiation',
+    category: 'Math Concepts',
+    description: 'Raising a number to a power in a modular system, a fundamental operation in public-key cryptography.',
+    capabilities: [
+      'Efficiently calculate (a^b) mod n even for large numbers',
+      'Understand the patterns of powers in modular systems',
+      'Apply to cryptographic algorithms like Diffie-Hellman',
+      'Form the basis for many ZK proof systems'
+    ],
+    limitations: [
+      'Computation can be resource-intensive for naive implementations',
+      'Requires understanding of number theory for proper application',
+      'Security depends on careful parameter selection'
+    ],
+    compatibilityTags: ['modular-arithmetic', 'advanced-math', 'cryptography-core'],
+    attributes: {
+      learnability: 75,
+      applicability: 100,
+      fundamentality: 100,
+      complexity: 70
+    },
+    image: 'modular-exponentiation.svg',
+    tooltipContent: 'Modular exponentiation involves computing (a^b) mod n efficiently. This operation is at the heart of many public-key cryptosystems and is essential for understanding ZK proofs.'
+  },
+
   // Proof Systems Category
   {
     id: 'zk-snarks',

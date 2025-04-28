@@ -1,0 +1,177 @@
+.modular-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    font-family: var(--font-main);
+}
+
+.modular-clock__title {
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+    font-size: 1.4rem;
+}
+
+.modular-clock__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.modular-clock__input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modular-clock__input-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.modular-clock__input-group input {
+    width: 60px;
+    padding: 0.5rem;
+    border: 1px solid var(--card-border);
+    border-radius: var(--button-radius);
+    text-align: center;
+}
+
+.modular-clock__operation {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-dark);
+}
+
+.modular-clock__visualization {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1.5rem;
+}
+
+.modular-clock__svg {
+    width: 100%;
+    height: auto;
+}
+
+.modular-clock__outline {
+    fill: var(--background-light);
+    stroke: var(--card-border);
+    stroke-width: 2;
+}
+
+.modular-clock__number-bg {
+    fill: white;
+    stroke: var(--card-border);
+    stroke-width: 1;
+    transition: all 0.3s ease;
+}
+
+.modular-clock__number-bg--result {
+    fill: var(--primary-light);
+    stroke: var(--primary-dark);
+    animation: pulse 1.5s ease-in-out;
+}
+
+.modular-clock__number {
+    font-size: 12px;
+    fill: var(--text-dark);
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+.modular-clock__hand {
+    stroke: var(--primary-dark);
+    stroke-width: 2;
+    stroke-linecap: round;
+    animation: hand-appear 0.5s ease-out;
+}
+
+.modular-clock__center {
+    fill: var(--primary-dark);
+}
+
+.modular-clock__explanation {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.modular-clock__formula {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    color: var(--primary-dark);
+}
+
+.modular-clock__hint {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    max-width: 400px;
+    line-height: 1.4;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes hand-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+        transform-origin: 100px 100px;
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        transform-origin: 100px 100px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .modular-clock__controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .modular-clock__operation {
+        margin: 0.5rem 0;
+    }
+}
+
+.modular-clock__hint {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    max-width: 400px;
+    line-height: 1.4;
+}
+
+.modular-clock__error {
+    color: var(--error);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    font-weight: 600;
+    padding: 0.5rem;
+    background-color: rgba(239, 68, 68, 0.1);
+    border-radius: 4px;
+    text-align: center;
+}
