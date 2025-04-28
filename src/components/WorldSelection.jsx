@@ -1,3 +1,5 @@
+// Update to WorldSelection.jsx to include Math Foundations world
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
@@ -10,9 +12,10 @@ import './WorldSelection.css';
  * @param {Object} props - Component props 
  * @param {Function} props.onWorldSelect - Handler for world selection
  * @param {Function} props.onBackClick - Handler for back button click
+ * @param {Function} props.onMathWorldSelect - Handler for Math World selection
  * @returns {React.Element} The rendered WorldSelection component
  */
-function WorldSelection({ onWorldSelect, onBackClick }) {
+function WorldSelection({ onWorldSelect, onBackClick, onMathWorldSelect }) {
   // Use flattened store structure - get completedScenarios directly
   const { completedScenarios, unlockedWorlds } = useGameStore();
 
@@ -33,6 +36,21 @@ function WorldSelection({ onWorldSelect, onBackClick }) {
       completedScenarios: completedCount,
     };
   });
+
+  // Add Math Foundations as a special world that's always unlocked
+  const mathWorld = {
+    id: 'math-foundations',
+    name: 'Math Foundations',
+    description: 'Learn the essential mathematical concepts behind zero-knowledge proofs',
+    isUnlocked: true,
+    isCompleted: false,
+    scenarioCount: 3,  // Three math modules
+    completedScenarios: 0,
+    isMathWorld: true  // Special flag to identify this as the math world
+  };
+  
+  // Add math world to the beginning of the list
+  const worldsWithMath = [mathWorld, ...availableWorlds];
 
   // Add hardcoded future worlds
   const futureWorlds = [
@@ -56,8 +74,8 @@ function WorldSelection({ onWorldSelect, onBackClick }) {
     },
   ];
 
-  // Combine available and future worlds
-  const worlds = [...availableWorlds, ...futureWorlds];
+  // Combine all worlds
+  const worlds = [...worldsWithMath, ...futureWorlds];
 
   // Animation for page entry
   const pageSpring = useSpring({
@@ -95,7 +113,12 @@ function WorldSelection({ onWorldSelect, onBackClick }) {
 
   // Handle world selection
   const handleWorldSelect = (world) => {
-    if (world.isUnlocked) {
+    if (!world.isUnlocked) return;
+    
+    // Special handling for Math World
+    if (world.isMathWorld) {
+      onMathWorldSelect();
+    } else {
       onWorldSelect(world);
     }
   };
@@ -111,7 +134,7 @@ function WorldSelection({ onWorldSelect, onBackClick }) {
         {worlds.map((world, index) => (
           <animated.div
             key={world.id}
-            className={`world-selection__world ${world.isUnlocked ? '' : 'world-selection__world--locked'}`}
+            className={`world-selection__world ${world.isUnlocked ? '' : 'world-selection__world--locked'} ${world.isMathWorld ? 'world-selection__world--math' : ''}`}
             style={getCardSpring(index)}
             onClick={() => handleWorldSelect(world)}
           >
@@ -163,6 +186,7 @@ function WorldSelection({ onWorldSelect, onBackClick }) {
 WorldSelection.propTypes = {
   onWorldSelect: PropTypes.func.isRequired,
   onBackClick: PropTypes.func.isRequired,
+  onMathWorldSelect: PropTypes.func.isRequired
 };
 
 export default WorldSelection;
