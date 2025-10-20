@@ -5,26 +5,26 @@
     background: linear-gradient(135deg, #4338ca, #6366f1, #818cf8);
     padding: 2rem;
     color: white;
-  }
-  
-  .math-world__header {
+}
+
+.math-world__header {
     text-align: center;
     margin-bottom: 2rem;
-  }
-  
-  .math-world__header h1 {
+}
+
+.math-world__header h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-  }
-  
-  .math-world__description {
+}
+
+.math-world__description {
     font-size: 1.1rem;
     max-width: 700px;
     margin: 0 auto;
     opacity: 0.9;
-  }
-  
-  .math-world__back-button {
+}
+
+.math-world__back-button {
     position: absolute;
     top: 2rem;
     left: 2rem;
@@ -36,22 +36,22 @@
     cursor: pointer;
     font-weight: 500;
     transition: background 0.2s ease;
-  }
-  
-  .math-world__back-button:hover {
+}
+
+.math-world__back-button:hover {
     background: rgba(255, 255, 255, 0.3);
-  }
-  
-  .math-world__modules {
+}
+
+.math-world__modules {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
-  }
-  
-  .math-world__module {
+}
+
+.math-world__module {
     display: flex;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
@@ -62,25 +62,25 @@
     cursor: pointer;
     position: relative;
     color: #1e293b;
-  }
-  
-  .math-world__module:hover {
+}
+
+.math-world__module:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  }
-  
-  .math-world__module--locked {
+}
+
+.math-world__module--locked {
     opacity: 0.7;
     filter: grayscale(70%);
     cursor: not-allowed;
-  }
-  
-  .math-world__module--locked:hover {
+}
+
+.math-world__module--locked:hover {
     transform: none;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .math-world__module-icon {
+}
+
+.math-world__module-icon {
     font-size: 2.5rem;
     display: flex;
     align-items: center;
@@ -91,32 +91,32 @@
     border-radius: 8px;
     margin-right: 1.5rem;
     flex-shrink: 0;
-  }
-  
-  .math-world__module-content {
+}
+
+.math-world__module-content {
     flex: 1;
-  }
-  
-  .math-world__module-content h2 {
+}
+
+.math-world__module-content h2 {
     font-size: 1.4rem;
     margin: 0 0 0.5rem 0;
     color: #4f46e5;
-  }
-  
-  .math-world__module-difficulty {
+}
+
+.math-world__module-difficulty {
     color: #eab308;
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
-  }
-  
-  .math-world__module-content p {
+}
+
+.math-world__module-content p {
     margin: 0;
     font-size: 1rem;
     line-height: 1.5;
     color: #475569;
-  }
-  
-  .math-world__module-locked {
+}
+
+.math-world__module-locked {
     position: absolute;
     top: 0;
     left: 0;
@@ -130,44 +130,44 @@
     color: white;
     padding: 1rem;
     text-align: center;
-  }
-  
-  .math-world__module-locked svg {
+}
+
+.math-world__module-locked svg {
     width: 40px;
     height: 40px;
     margin-bottom: 1rem;
-  }
-  
-  /* Math visualization common styles */
-  .math-visualization {
+}
+
+/* Math visualization common styles */
+.math-visualization {
     background: white;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
     .math-world {
-      padding: 1rem;
+        padding: 1rem;
     }
-    
+
     .math-world__header h1 {
-      font-size: 2rem;
+        font-size: 2rem;
     }
-    
+
     .math-world__back-button {
-      top: 1rem;
-      left: 1rem;
+        top: 1rem;
+        left: 1rem;
     }
-    
+
     .math-world__module {
-      flex-direction: column;
+        flex-direction: column;
     }
-    
+
     .math-world__module-icon {
-      margin-right: 0;
-      margin-bottom: 1rem;
+        margin-right: 0;
+        margin-bottom: 1rem;
     }
-  }
+}

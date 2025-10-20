@@ -5,6 +5,8 @@ import { getCardById } from '../data/cards';
 import GameBoard from './GameBoard';
 import AvailableCards from './AvailableCards';
 import FeedbackModal from './FeedbackModal';
+import NumberTheoryChallenge from './NumberTheoryChallenge';
+import MathChallengeScreen from './MathChallengeScreen';
 import './GameplayScreen.css';
 
 /**
@@ -40,20 +42,36 @@ function GameplayScreen({ scenario, onExitClick, onCompleteScenario }) {
 
   // Get the selected card object
   const selectedCard = getCardById(selectedCardId);
+  
+  // Check if this is a math challenge scenario
+  const isMathChallenge = scenario?.type && (
+    scenario.type === 'number-theory' || 
+    scenario.type === 'finite-field' || 
+    scenario.type === 'elliptic-curve' || 
+    scenario.type === 'polynomial' || 
+    scenario.type === 'hash-function' || 
+    scenario.type === 'discrete-log'
+  );
 
   // Initialize game when scenario changes
   useEffect(() => {
-    if (scenario) {
-      startScenario(scenario);
-
+    if (!scenario) return;
+    
+    startScenario(scenario);
+    
+    // Skip loading cards for math challenges since they don't use cards
+    if (!isMathChallenge && scenario.availableCards) {
       // Load available cards
       const cardObjects = scenario.availableCards.map(cardId => getCardById(cardId)).filter(Boolean);
       setAvailableCards(cardObjects);
-
-      // Reset hinted stages when starting a new scenario
-      setHintedStages(new Set());
+    } else {
+      // For math challenges, set empty cards array
+      setAvailableCards([]);
     }
-  }, [scenario, startScenario]);
+
+    // Reset hinted stages when starting a new scenario
+    setHintedStages(new Set());
+  }, [scenario, startScenario, isMathChallenge]);
 
   // Handle card selection
   const handleCardSelect = (card) => {
@@ -148,6 +166,31 @@ function GameplayScreen({ scenario, onExitClick, onCompleteScenario }) {
     }
   };
 
+  // Handle math challenge completion
+  const handleMathChallengeComplete = () => {
+    // Set a high score for math challenges
+    const mathScore = 95;
+    completeScenario(scenario.id, mathScore);
+    onCompleteScenario(mathScore);
+  };
+
+  // Render math challenge if this is a math scenario
+  if (isMathChallenge) {
+    return (
+      <MathChallengeScreen 
+        challenge={{
+          id: scenario.id,
+          name: scenario.name,
+          description: scenario.description,
+          type: scenario.type
+        }}
+        onComplete={handleMathChallengeComplete}
+        onExit={onExitClick}
+      />
+    );
+  }
+
+  // Regular card game UI for normal scenarios
   return (
     <div className="gameplay-screen">
       {/* Header */}
@@ -179,7 +222,11 @@ function GameplayScreen({ scenario, onExitClick, onCompleteScenario }) {
       <div className="gameplay-screen__content">
         <div className="gameplay-screen__board-container">
           <GameBoard
-            stages={scenario?.stages || []}
+            stages={scenario?.stages?.map(stage => ({
+              ...stage,
+              // Add acceptableCards if it doesn't exist
+              acceptableCards: stage.acceptableCards || []
+            })) || []}
             placedCards={placedCardObjects}
             selectedCard={selectedCard}
             onStageClick={handleStageClick}

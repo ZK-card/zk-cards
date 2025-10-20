@@ -6,64 +6,68 @@
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     color: #1e293b;
-  }
-  
-  .finite-field-grid {
+}
+
+.finite-field-grid {
     margin: 1rem 0;
     display: flex;
     justify-content: center;
-  }
-  
-  .intro-caption {
+}
+
+.intro-caption {
     text-align: center;
     font-size: 0.9rem;
     color: #64748b;
     margin-top: 1rem;
-  }
-  
-  .field-playground {
+}
+
+.field-playground {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
     margin-bottom: 2rem;
     width: 100%;
-  }
-  
-  .field-controls {
+}
+
+.field-controls {
     flex: 1;
     min-width: 300px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-  }
-  
-  .field-visualization {
+}
+
+.field-visualization {
     flex: 1;
     min-width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .field-size-control, .operation-selector {
+}
+
+.field-size-control,
+.operation-selector {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-  }
-  
-  .field-size-control label, .operation-selector label {
+}
+
+.field-size-control label,
+.operation-selector label {
     font-weight: 600;
     color: #334155;
-  }
-  
-  .field-size-buttons, .operation-buttons {
+}
+
+.field-size-buttons,
+.operation-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-  }
-  
-  .field-size-button, .operation-button {
+}
+
+.field-size-button,
+.operation-button {
     background-color: #f1f5f9;
     border: 1px solid #cbd5e1;
     color: #334155;
@@ -72,42 +76,44 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-  }
-  
-  .field-size-button:hover, .operation-button:hover {
+}
+
+.field-size-button:hover,
+.operation-button:hover {
     background-color: #e2e8f0;
-  }
-  
-  .field-size-button.active, .operation-button.active {
+}
+
+.field-size-button.active,
+.operation-button.active {
     background-color: #4f46e5;
     border-color: #4f46e5;
     color: white;
-  }
-  
-  .field-operands {
+}
+
+.field-operands {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-  
-  .field-operand {
+}
+
+.field-operand {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-  }
-  
-  .field-operand label {
+}
+
+.field-operand label {
     font-weight: 600;
     color: #334155;
-  }
-  
-  .operand-buttons {
+}
+
+.operand-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
-  }
-  
-  .operand-button {
+}
+
+.operand-button {
     min-width: 2rem;
     padding: 0.35rem;
     background-color: #f1f5f9;
@@ -116,110 +122,111 @@
     font-size: 0.9rem;
     cursor: pointer;
     text-align: center;
-  }
-  
-  .operand-button:hover {
+}
+
+.operand-button:hover {
     background-color: #e2e8f0;
-  }
-  
-  .operand-button.active {
+}
+
+.operand-button.active {
     background-color: #4f46e5;
     border-color: #4f46e5;
     color: white;
-  }
-  
-  .result-display {
+}
+
+.result-display {
     margin-top: 1rem;
     padding: 1rem;
     background-color: #f8fafc;
     border-radius: 8px;
     border: 1px solid #e2e8f0;
     text-align: center;
-  }
-  
-  .result-equation {
+}
+
+.result-equation {
     font-size: 1.2rem;
     font-weight: 600;
     color: #4f46e5;
-  }
-  
-  .field-description {
+}
+
+.field-description {
     background-color: #f8fafc;
     padding: 1.5rem;
     border-radius: 12px;
     margin: 2rem 0;
     border-left: 4px solid #4f46e5;
-  }
-  
-  .field-description h3 {
+}
+
+.field-description h3 {
     margin-top: 0;
     margin-bottom: 1rem;
     color: #334155;
-  }
-  
-  .field-description p {
+}
+
+.field-description p {
     margin: 0 0 1rem 0;
     text-align: left;
-  }
-  
-  .field-description ul {
+}
+
+.field-description ul {
     margin: 0;
     padding-left: 1.5rem;
-  }
-  
-  .field-description li {
+}
+
+.field-description li {
     margin-bottom: 0.5rem;
-  }
-  
-  .module-buttons {
+}
+
+.module-buttons {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     align-items: center;
-  }
-  
-  .applications-container {
+}
+
+.applications-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
-  }
-  
-  .application-card {
+}
+
+.application-card {
     background-color: #f8fafc;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .application-card:hover {
+}
+
+.application-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .application-card h3 {
+}
+
+.application-card h3 {
     margin-top: 0;
     margin-bottom: 1rem;
     color: #4f46e5;
-  }
-  
-  .application-card p {
+}
+
+.application-card p {
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.5;
     color: #334155;
-  }
-  
-  /* Module Complete styling is in the common MathWorld.css */
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
+}
+
+/* Module Complete styling is in the common MathWorld.css */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
     .finite-field-explorer {
-      padding: 1.5rem;
+        padding: 1.5rem;
     }
-    
-    .field-playground, .applications-container {
-      flex-direction: column;
+
+    .field-playground,
+    .applications-container {
+        flex-direction: column;
     }
-  }
+}

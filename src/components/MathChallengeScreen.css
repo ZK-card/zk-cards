@@ -5,9 +5,9 @@
     min-height: 100vh;
     background: linear-gradient(135deg, #4338ca, #3730a3);
     padding: 2rem;
-  }
-  
-  .math-challenge-screen__content {
+}
+
+.math-challenge-screen__content {
     background-color: white;
     border-radius: 16px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -15,59 +15,59 @@
     max-width: 800px;
     overflow: hidden;
     position: relative;
-  }
-  
-  .math-challenge-screen__progress {
+}
+
+.math-challenge-screen__progress {
     height: 6px;
     width: 100%;
     background-color: #e2e8f0;
-  }
-  
-  .math-challenge-screen__progress-fill {
+}
+
+.math-challenge-screen__progress-fill {
     height: 100%;
     background-color: var(--primary-color);
     transition: width 0.3s ease;
-  }
-  
-  .math-challenge-screen__header {
+}
+
+.math-challenge-screen__header {
     padding: 1.5rem 2rem;
     border-bottom: 1px solid #f1f5f9;
-  }
-  
-  .math-challenge-screen__title {
+}
+
+.math-challenge-screen__title {
     font-size: 2rem;
     color: var(--primary-dark);
     margin-top: 0;
     margin-bottom: 0.5rem;
-  }
-  
-  .math-challenge-screen__description {
+}
+
+.math-challenge-screen__description {
     color: var(--text-dark);
     margin: 0;
     line-height: 1.5;
-  }
-  
-  .math-challenge-screen__challenge {
+}
+
+.math-challenge-screen__challenge {
     padding: 1.5rem 2rem 2rem;
-  }
-  
-  .math-challenge-screen__challenge-title {
+}
+
+.math-challenge-screen__challenge-title {
     font-size: 1.5rem;
     color: var(--primary-dark);
     margin-top: 0;
     margin-bottom: 1rem;
-  }
-  
-  .math-challenge-screen__buttons {
+}
+
+.math-challenge-screen__buttons {
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 2rem;
     background-color: #f8fafc;
     border-top: 1px solid #f1f5f9;
-  }
-  
-  .math-challenge-screen__next-button,
-  .math-challenge-screen__complete-button {
+}
+
+.math-challenge-screen__next-button,
+.math-challenge-screen__complete-button {
     background-color: var(--primary-color);
     color: white;
     border: none;
@@ -77,27 +77,27 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
-  }
-  
-  .math-challenge-screen__next-button:hover,
-  .math-challenge-screen__complete-button:hover {
+}
+
+.math-challenge-screen__next-button:hover,
+.math-challenge-screen__complete-button:hover {
     background-color: var(--primary-dark);
-  }
-  
-  .math-challenge-screen__next-button:disabled {
+}
+
+.math-challenge-screen__next-button:disabled {
     background-color: #cbd5e1;
     cursor: not-allowed;
-  }
-  
-  .math-challenge-screen__complete-button {
+}
+
+.math-challenge-screen__complete-button {
     background-color: var(--success);
-  }
-  
-  .math-challenge-screen__complete-button:hover {
+}
+
+.math-challenge-screen__complete-button:hover {
     background-color: #0e9f6e;
-  }
-  
-  .math-challenge-screen__back-button {
+}
+
+.math-challenge-screen__back-button {
     background-color: transparent;
     color: var(--text-dark);
     border: 1px solid #cbd5e1;
@@ -107,70 +107,70 @@
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.2s ease;
-  }
-  
-  .math-challenge-screen__back-button:hover {
+}
+
+.math-challenge-screen__back-button:hover {
     background-color: #f1f5f9;
-  }
-  
-  .math-challenge-screen__completion-message {
+}
+
+.math-challenge-screen__completion-message {
     padding: 2rem;
     text-align: center;
     background-color: rgba(16, 185, 129, 0.1);
     border-radius: 8px;
     margin: 1rem 0;
-  }
-  
-  .math-challenge-screen__completion-icon {
+}
+
+.math-challenge-screen__completion-icon {
     color: var(--success);
     font-size: 3rem;
     margin-bottom: 1rem;
-  }
-  
-  .math-challenge-screen__completion-title {
+}
+
+.math-challenge-screen__completion-title {
     font-size: 1.5rem;
     color: var(--success);
     margin: 0 0 1rem 0;
-  }
-  
-  .math-challenge-screen__completion-text {
+}
+
+.math-challenge-screen__completion-text {
     margin: 0;
     line-height: 1.6;
-  }
-  
-  /* Component container styles */
-  .math-challenge-screen__component-container {
+}
+
+/* Component container styles */
+.math-challenge-screen__component-container {
     margin: 1rem 0;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
     .math-challenge-screen {
-      padding: 1rem;
+        padding: 1rem;
     }
-    
+
     .math-challenge-screen__header,
     .math-challenge-screen__challenge,
     .math-challenge-screen__buttons {
-      padding: 1.5rem;
+        padding: 1.5rem;
     }
-    
+
     .math-challenge-screen__title {
-      font-size: 1.75rem;
+        font-size: 1.75rem;
     }
-    
+
     .math-challenge-screen__challenge-title {
-      font-size: 1.3rem;
+        font-size: 1.3rem;
     }
-    
+
     .math-challenge-screen__buttons {
-      flex-direction: column;
-      gap: 1rem;
+        flex-direction: column;
+        gap: 1rem;
     }
-    
+
     .math-challenge-screen__next-button,
     .math-challenge-screen__complete-button,
     .math-challenge-screen__back-button {
-      width: 100%;
+        width: 100%;
     }
-  }
+}

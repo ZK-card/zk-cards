@@ -1,12 +1,10 @@
-# ZK Card Game
+# ZK Card Clash
 
-An educational card game focused on Zero-Knowledge technologies. Play on : https://zk-cards.netlify.app/
-
-![ZK Card Game](worlds.png)
+An educational card game focused on Zero-Knowledge technologies.
 
 ## Overview
 
-ZK Card Game is an interactive card game that teaches users about Zero-Knowledge technologies through practical challenges. Players solve real-world privacy and verification scenarios by selecting and applying appropriate ZK technology cards.
+ZK Card Clash is an interactive card game that teaches users about Zero-Knowledge technologies through practical challenges. Players solve real-world privacy and verification scenarios by selecting and applying appropriate ZK technology cards.
 
 ## Features
 
@@ -21,6 +19,7 @@ ZK Card Game is an interactive card game that teaches users about Zero-Knowledge
 - **Frontend**: React with JavaScript
 - **Build Tool**: Vite
 - **State Management**: Zustand
+- **Animations**: React Spring
 - **Assets**: SVG graphics for cards and UI elements
 
 ## Project Structure
@@ -43,8 +42,8 @@ ZK Card Game is an interactive card game that teaches users about Zero-Knowledge
 
 ```bash
 # Clone the repository
-git clone https://github.com/zk-card/zk-cards.git
-cd zk-cards
+git clone https://github.com/yourusername/zk-card-clash.git
+cd zk-card-clash
 
 # Install dependencies
 npm install
@@ -76,7 +75,7 @@ This project is in MVP phase. Contributions are welcome!
 
 ## License
 
-[Apache License](LICENSE)
+[MIT License](LICENSE)
 
 ## Acknowledgements
 

@@ -37,20 +37,20 @@ function WorldSelection({ onWorldSelect, onBackClick, onMathWorldSelect }) {
     };
   });
 
-  // Add Math Foundations as a special world that's always unlocked
-  const mathWorld = {
-    id: 'math-foundations',
-    name: 'Math Foundations',
-    description: 'Learn the essential mathematical concepts behind zero-knowledge proofs',
-    isUnlocked: true,
-    isCompleted: false,
-    scenarioCount: 3,  // Three math modules
-    completedScenarios: 0,
-    isMathWorld: true  // Special flag to identify this as the math world
-  };
+  // Create a copy of availableWorlds
+  const worldsWithMath = [...availableWorlds];
   
-  // Add math world to the beginning of the list
-  const worldsWithMath = [mathWorld, ...availableWorlds];
+  // Find math world if it exists
+  const mathWorldIndex = worldsWithMath.findIndex(world => world.id === 'math-world');
+  
+  if (mathWorldIndex >= 0) {
+    // Update the existing math world with required properties
+    worldsWithMath[mathWorldIndex] = {
+      ...worldsWithMath[mathWorldIndex],
+      isUnlocked: true,  // Always unlock math world
+      isMathWorld: true  // Mark as math world
+    };
+  }
 
   // Add hardcoded future worlds
   const futureWorlds = [
@@ -114,10 +114,16 @@ function WorldSelection({ onWorldSelect, onBackClick, onMathWorldSelect }) {
   // Handle world selection
   const handleWorldSelect = (world) => {
     if (!world.isUnlocked) return;
-    
+
     // Special handling for Math World
-    if (world.isMathWorld) {
-      onMathWorldSelect();
+    if (world.isMathWorld || world.id === 'math-world') {
+      // Ensure we pass a consistent world object regardless of how it was created
+      const mathWorldObj = {
+        id: 'math-world',
+        name: 'Math Foundations',
+        description: 'Learn the essential mathematical concepts behind zero-knowledge proofs'
+      };
+      onMathWorldSelect(mathWorldObj);
     } else {
       onWorldSelect(world);
     }

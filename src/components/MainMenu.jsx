@@ -109,7 +109,16 @@ function MainMenu({ onPlayClick, onTutorialClick, onAboutClick, onExpansionPlanC
         <div className="main-menu__footer" style={{ color: 'black' }}>
           <span>Version 1.0 - Phase 1 MVP</span>
           <span>An educational project about Zero-Knowledge technologies created by <a href='https://github.com/hackertron/'>@hackertron</a></span>
-          <span>Follow for more on <a href='https://x.com/jayssj1'>X</a></span>
+          <span>
+            <a href="https://github.com/ZK-card/zk-cards" target="_blank" rel="noopener noreferrer">
+              <img
+                src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                alt="GitHub Logo"
+                style={{ width: '20px', height: '20px', verticalAlign: 'middle', marginLeft: '5px' }}
+              />
+            </a>
+          </span>
+          <span>Follow for more on <a href='https://x.com/zk_cards'>X</a></span>
         </div>
       </div>
     </div>

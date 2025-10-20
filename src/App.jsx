@@ -9,7 +9,6 @@ import MathTutorialScreen from './components/MathTutorialScreen'; // Import the 
 import AboutScreen from './components/AboutScreen';
 import WorldCompletionScreen from './components/WorldCompletionScreen';
 import ExpansionPlanScreen from './components/ExpansionPlanScreen';
-import MathWorld from './components/MathWorld';
 import useGameStore from './store/gameStore';
 import scenariosData from './data/scenarios';
 
@@ -164,13 +163,6 @@ function App() {
             onTutorialClick={() => handleNavigate('tutorial')}
             onAboutClick={() => handleNavigate('about')}
             onExpansionPlanClick={() => handleNavigate('expansion-plan')}
-            onMathWorldClick={() => handleNavigate('math-world')}
-          />
-        );
-      case 'math-world':
-        return (
-          <MathWorld
-            onBackClick={handleBackToMainMenu}
           />
         );
       case 'world-selection':
@@ -178,6 +170,15 @@ function App() {
           <WorldSelection
             onWorldSelect={handleWorldSelect}
             onBackClick={handleBackToMainMenu}
+            onMathWorldSelect={(world) => {
+              // Handle math world selection by navigating to math tutorial or scenarios
+              if (!mathTutorialCompleted) {
+                setCurrentScreen('math-tutorial');
+              } else {
+                // Use the world object passed from WorldSelection
+                handleWorldSelect(world);
+              }
+            }}
           />
         );
       case 'scenario-selection':

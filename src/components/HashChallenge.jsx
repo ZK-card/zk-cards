@@ -3,403 +3,589 @@ import PropTypes from 'prop-types';
 import './MathComponents.css';
 
 /**
- * Simple hash function for educational purposes
- * @param {string} input - The input string to hash
- * @param {number} modulus - The modulus for the hash
- * @returns {number} - The hash value
- */
-const simpleHash = (input, modulus) => {
-  let hash = 0;
-  
-  for (let i = 0; i < input.length; i++) {
-    // Simple hashing: multiply by 31 and add character code
-    hash = ((hash * 31) + input.charCodeAt(i)) % modulus;
-  }
-  
-  return hash;
-};
-
-/**
- * HashChallenge component - Interactive hash function demonstration
- * @param {Object} props - Component props
- * @param {Function} props.onSolve - Handler when the challenge is solved
+ * HashChallenge component - Interactive tool for learning about cryptographic hash functions
+ * 
+ * @param {Object} props
+ * @param {Function} props.onSolve - Callback when exercise is solved
  * @returns {React.Element} The rendered HashChallenge component
  */
 function HashChallenge({ onSolve }) {
-  const [hashModulus, setHashModulus] = useState(97); // Small prime for hash output
-  const [challengeType, setChallengeType] = useState('forward');
-  const [input, setInput] = useState('');
-  const [targetHash, setTargetHash] = useState(0);
-  const [userAnswer, setUserAnswer] = useState('');
-  const [isCorrect, setIsCorrect] = useState(null);
-  const [showHint, setShowHint] = useState(false);
-  const [successCount, setSuccessCount] = useState(0);
-  const [preimagePool, setPreimagePool] = useState([]);
-  const [hashTable, setHashTable] = useState({});
-  const [collisionFound, setCollisionFound] = useState(null);
-
-  // Generate pre-image pool on init
-  useEffect(() => {
-    generatePreimagePool();
-  }, []);
-
-  // Set up a new challenge when needed
-  useEffect(() => {
-    setupNewChallenge();
-  }, [successCount, challengeType, preimagePool]);
-
-  // Generate a pool of potential pre-images
-  const generatePreimagePool = () => {
-    // Generate pool of words to use as pre-images
-    const wordPool = [
-      'zero', 'knowledge', 'proof', 'math', 'commit', 
-      'hash', 'crypto', 'secure', 'privacy', 'blockchain',
-      'elliptic', 'curve', 'finite', 'field', 'modular',
-      'polynomial', 'arithmetic', 'prime', 'verifier', 'prover',
-      'snark', 'stark', 'bullet', 'signature', 'plonk'
-    ];
+  const [currentStage, setCurrentStage] = useState(0);
+  const [isQuizActive, setIsQuizActive] = useState(false);
+  const [quizAnswers, setQuizAnswers] = useState({});
+  const [showResults, setShowResults] = useState(false);
+  const [score, setScore] = useState(0);
+  
+  // Hash function demo state
+  const [inputText, setInputText] = useState("");
+  const [hashResult, setHashResult] = useState("");
+  const [hashHistory, setHashHistory] = useState([]);
+  const [showCollision, setShowCollision] = useState(false);
+  
+  // Merkle tree state
+  const [merkleLeaves, setMerkleLeaves] = useState(["data1", "data2", "data3", "data4"]);
+  const [merkleTree, setMerkleTree] = useState([]);
+  const [proofIndex, setProofIndex] = useState(0);
+  const [merkleProof, setMerkleProof] = useState([]);
+  
+  const stages = [
+    {
+      title: "What are Cryptographic Hash Functions?",
+      content: "Cryptographic hash functions transform arbitrary data into fixed-size outputs (hashes) in a way that is deterministic but practically impossible to reverse. They're fundamental building blocks in cryptography and essential components in zero-knowledge proof systems."
+    },
+    {
+      title: "Key Properties of Hash Functions",
+      content: "A good cryptographic hash function has several important properties: 1) One-way (pre-image resistance): Given a hash, it should be infeasible to find the original input. 2) Collision resistance: It should be extremely difficult to find two different inputs that produce the same hash. 3) Avalanche effect: Small changes in input should produce significantly different hash outputs."
+    },
+    {
+      title: "Interactive Hash Function Demo",
+      content: "Try entering different text inputs to see how the hash outputs change. Notice how small changes in the input result in completely different hash values. This is the avalanche effect in action."
+    },
+    {
+      title: "Merkle Trees and Hash-based Data Structures",
+      content: "Merkle trees are tree data structures where each leaf node contains the hash of a data block, and each non-leaf node contains the hash of its children. They enable efficient and secure verification of large data structures, which is particularly valuable in zero-knowledge proofs."
+    },
+    {
+      title: "Applications in Zero-Knowledge Proofs",
+      content: "Hash functions are used extensively in ZK proofs. They enable commitments (hiding data while proving properties about it), succinctly represent large data sets via Merkle trees, and provide binding guarantees critical for the security of zero-knowledge protocols."
+    }
+  ];
+  
+  const quizQuestions = [
+    {
+      id: 'q1',
+      question: "Which of these is NOT a key property of cryptographic hash functions?",
+      options: [
+        "One-way (preimage resistance)",
+        "Collision resistance",
+        "Reversibility",
+        "Determinism (same input always produces same output)"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 'q2',
+      question: "What is the 'avalanche effect' in hash functions?",
+      options: [
+        "The ability to withstand quantum computer attacks",
+        "Small changes in input causing large changes in the hash output",
+        "The computational complexity increasing exponentially with input size",
+        "The function's ability to handle variable-length inputs"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 'q3',
+      question: "In a Merkle tree with 8 leaf nodes, how many levels will the tree have (including the root)?",
+      options: [
+        "2 levels",
+        "3 levels",
+        "4 levels",
+        "8 levels"
+      ],
+      correctAnswer: 2
+    },
+    {
+      id: 'q4',
+      question: "How are hash functions used in zero-knowledge proofs?",
+      options: [
+        "To encrypt all communications between prover and verifier",
+        "To create commitments to data without revealing the data itself",
+        "To speed up computation by compressing data",
+        "To eliminate the need for interactive verification"
+      ],
+      correctAnswer: 1
+    },
+    {
+      id: 'q5',
+      question: "What is a hash collision?",
+      options: [
+        "When a hash function crashes due to invalid input",
+        "When the same hash function is used twice in a protocol",
+        "When two different inputs produce the same hash output",
+        "When a hash function takes too long to compute"
+      ],
+      correctAnswer: 2
+    }
+  ];
+  
+  // Simple hash function for demonstration
+  const simpleHash = (input) => {
+    if (!input) return "";
     
-    // Add numbers and combinations
-    const numericPool = [];
-    for (let i = 0; i < 15; i++) {
-      numericPool.push(String(Math.floor(Math.random() * 1000)));
+    // A simple hash function for demonstration
+    // In production, you'd use a cryptographic hash like SHA-256
+    let hash = 0;
+    for (let i = 0; i < input.length; i++) {
+      const char = input.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    
+    // Convert to hex string and ensure it's 8 characters long
+    const hexHash = (hash >>> 0).toString(16).padStart(8, '0');
+    return hexHash;
+  };
+  
+  // Generate Merkle tree from leaves
+  const generateMerkleTree = (leaves) => {
+    if (!leaves || leaves.length === 0) return [];
+    
+    // Start with leaf hashes
+    const tree = leaves.map(leaf => simpleHash(leaf));
+    let levelSize = tree.length;
+    let currentIndex = 0;
+    
+    // Build tree bottom-up
+    while (levelSize > 1) {
+      for (let i = 0; i < levelSize; i += 2) {
+        if (i + 1 < levelSize) {
+          // If there's a pair, hash them together
+          const combinedHash = simpleHash(tree[currentIndex + i] + tree[currentIndex + i + 1]);
+          tree.push(combinedHash);
+        } else {
+          // If there's an odd node, propagate it up
+          tree.push(tree[currentIndex + i]);
+        }
+      }
       
-      // Add some combinations of words with numbers
-      if (i < 10) {
-        const word = wordPool[Math.floor(Math.random() * wordPool.length)];
-        numericPool.push(`${word}${Math.floor(Math.random() * 100)}`);
+      currentIndex += levelSize;
+      levelSize = Math.ceil(levelSize / 2);
+    }
+    
+    return tree;
+  };
+  
+  // Generate Merkle proof for a leaf
+  const generateMerkleProof = (tree, leafIndex, numLeaves) => {
+    const proof = [];
+    let index = leafIndex;
+    let levelSize = numLeaves;
+    let currentIndex = 0;
+    
+    while (levelSize > 1) {
+      const isRightNode = index % 2 === 1;
+      const siblingIndex = isRightNode ? index - 1 : index + 1;
+      
+      // Only add sibling if it exists in the level
+      if (siblingIndex < levelSize) {
+        proof.push({
+          value: tree[currentIndex + siblingIndex],
+          position: isRightNode ? 'left' : 'right'
+        });
+      }
+      
+      // Move to the parent node in the next level
+      index = Math.floor(index / 2);
+      currentIndex += levelSize;
+      levelSize = Math.ceil(levelSize / 2);
+    }
+    
+    return proof;
+  };
+  
+  // Verify Merkle proof
+  const verifyMerkleProof = (leaf, proof, root) => {
+    let currentHash = simpleHash(leaf);
+    
+    for (const node of proof) {
+      if (node.position === 'left') {
+        currentHash = simpleHash(node.value + currentHash);
+      } else {
+        currentHash = simpleHash(currentHash + node.value);
       }
     }
     
-    setPreimagePool([...wordPool, ...numericPool]);
+    return currentHash === root;
   };
-
-  // Set up a new challenge
-  const setupNewChallenge = () => {
-    if (!preimagePool.length) return;
+  
+  // Update Merkle tree when leaves change
+  useEffect(() => {
+    const tree = generateMerkleTree(merkleLeaves);
+    setMerkleTree(tree);
     
-    // Decide challenge type based on success count
-    if (successCount >= 2 && successCount < 4) {
-      setChallengeType('preimage');
-    } else if (successCount >= 4) {
-      setChallengeType('collision');
+    // Update proof for selected index
+    if (merkleLeaves.length > 0) {
+      const proof = generateMerkleProof(tree, proofIndex, merkleLeaves.length);
+      setMerkleProof(proof);
+    }
+  }, [merkleLeaves, proofIndex]);
+  
+  // Handle hash input change
+  const handleInputChange = (e) => {
+    setInputText(e.target.value);
+    const hash = simpleHash(e.target.value);
+    setHashResult(hash);
+  };
+  
+  // Add current hash to history
+  const handleAddToHistory = () => {
+    if (inputText && hashResult) {
+      const newEntry = { input: inputText, hash: hashResult };
+      setHashHistory(prev => [newEntry, ...prev.slice(0, 4)]);
+    }
+  };
+  
+  // Find a simple hash collision (for demo purposes)
+  const handleFindCollision = () => {
+    // This is a simplified demo that just finds two inputs with the same first 2 chars of hash
+    // Real collision finding would be computationally infeasible
+    setShowCollision(true);
+    
+    // These two different strings produce hashes that start with the same characters
+    const input1 = "collision demo 1";
+    const input2 = "different collision input";
+    
+    const hash1 = simpleHash(input1);
+    const hash2 = simpleHash(input2);
+    
+    // Update history with our "collision" (note: in real hash functions, finding actual
+    // collisions would be extremely difficult and not feasible for a browser demo)
+    setHashHistory([
+      { input: input1, hash: hash1 },
+      { input: input2, hash: hash2 },
+      ...hashHistory.slice(0, 3)
+    ]);
+  };
+  
+  // Handle leaf value change in Merkle tree
+  const handleLeafChange = (index, value) => {
+    const newLeaves = [...merkleLeaves];
+    newLeaves[index] = value;
+    setMerkleLeaves(newLeaves);
+  };
+  
+  // Handle proof index change
+  const handleProofIndexChange = (index) => {
+    if (index >= 0 && index < merkleLeaves.length) {
+      setProofIndex(index);
+    }
+  };
+  
+  const handleNextStage = () => {
+    if (currentStage < stages.length - 1) {
+      setCurrentStage(currentStage + 1);
     } else {
-      setChallengeType('forward');
-    }
-    
-    // Reset state for the new challenge
-    setIsCorrect(null);
-    setUserAnswer('');
-    setCollisionFound(null);
-    
-    if (challengeType === 'forward') {
-      // Forward hashing: provide input, ask for hash
-      const randomInput = preimagePool[Math.floor(Math.random() * preimagePool.length)];
-      setInput(randomInput);
-      setTargetHash(simpleHash(randomInput, hashModulus));
-    } 
-    else if (challengeType === 'preimage') {
-      // Pre-image challenge: provide hash, ask for input
-      const randomInput = preimagePool[Math.floor(Math.random() * preimagePool.length)];
-      setInput('');
-      setTargetHash(simpleHash(randomInput, hashModulus));
-    }
-    else if (challengeType === 'collision') {
-      // Collision challenge: find two inputs with same hash
-      // Build a hash table of some inputs
-      const newHashTable = {};
-      
-      preimagePool.forEach(word => {
-        const hash = simpleHash(word, hashModulus);
-        if (!newHashTable[hash]) {
-          newHashTable[hash] = [];
-        }
-        newHashTable[hash].push(word);
-      });
-      
-      // Only include hashes that have collisions in our pool
-      const hashesWithCollisions = Object.keys(newHashTable).filter(
-        hash => newHashTable[hash].length > 1
-      );
-      
-      // If we found collisions, pick one for the challenge
-      if (hashesWithCollisions.length > 0) {
-        const targetHashStr = hashesWithCollisions[Math.floor(Math.random() * hashesWithCollisions.length)];
-        setTargetHash(parseInt(targetHashStr, 10));
-        setHashTable(newHashTable);
-      } else {
-        // If no collisions in our pool, add some by hand
-        const newPreimagePool = [...preimagePool];
-        
-        // Create some known collisions by manipulating characters
-        for (let i = 0; i < 5; i++) {
-          const baseWord = preimagePool[Math.floor(Math.random() * preimagePool.length)];
-          let collision = '';
-          
-          // Find a collision by brute force
-          for (let j = 0; j < 100; j++) {
-            collision = baseWord + '_' + j;
-            if (simpleHash(collision, hashModulus) === simpleHash(baseWord, hashModulus)) {
-              break;
-            }
-          }
-          
-          // Add the collision to the pool
-          if (collision) {
-            newPreimagePool.push(collision);
-          }
-        }
-        
-        setPreimagePool(newPreimagePool);
-        
-        // Retry with the new pool
-        setChallengeType('forward'); // Start easier
-      }
+      // Start the quiz when we've gone through all stages
+      setIsQuizActive(true);
     }
   };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    if (challengeType === 'forward') {
-      // Forward hashing: check if the user's hash matches the correct hash
-      const userHashNum = parseInt(userAnswer, 10);
-      const correct = userHashNum === targetHash;
-      setIsCorrect(correct);
-      
-      if (correct) {
-        handleSuccess();
-      }
-    } 
-    else if (challengeType === 'preimage') {
-      // Pre-image challenge: check if the hash of the user's input matches the target
-      const userHashValue = simpleHash(userAnswer, hashModulus);
-      const correct = userHashValue === targetHash;
-      setIsCorrect(correct);
-      
-      if (correct) {
-        handleSuccess();
-      }
-    }
-    else if (challengeType === 'collision') {
-      // Collision challenge: check if the hash of the user's input matches the target
-      // and is different from the first input
-      if (input && userAnswer && input !== userAnswer) {
-        const inputHash = simpleHash(input, hashModulus);
-        const userAnswerHash = simpleHash(userAnswer, hashModulus);
-        
-        const correct = inputHash === userAnswerHash;
-        setIsCorrect(correct);
-        
-        if (correct) {
-          setCollisionFound({
-            input1: input,
-            input2: userAnswer,
-            hash: inputHash
-          });
-          handleSuccess();
-        }
-      } else {
-        // First collision input
-        const userHashValue = simpleHash(userAnswer, hashModulus);
-        
-        // Find a collision in our hash table
-        const collisions = hashTable[userHashValue] || [];
-        
-        if (collisions.length > 1) {
-          // Find a collision different from the user input
-          const otherCollision = collisions.find(c => c !== userAnswer);
-          
-          if (otherCollision) {
-            setInput(userAnswer);
-            setUserAnswer('');
-            setIsCorrect(true);
-            
-            // Give user a hint about the collision
-            alert(`Great! "${userAnswer}" hashes to ${userHashValue}.\nNow enter a different value that also hashes to ${userHashValue}.`);
-            return;
-          }
-        }
-        
-        // No collision found in our table, let user try again
-        setIsCorrect(false);
-      }
+  
+  const handlePrevStage = () => {
+    if (currentStage > 0) {
+      setCurrentStage(currentStage - 1);
     }
   };
-
-  // Handle successful challenge completion
-  const handleSuccess = () => {
-    const newSuccessCount = successCount + 1;
-    setSuccessCount(newSuccessCount);
+  
+  const handleQuizAnswer = (questionId, answerIndex) => {
+    setQuizAnswers(prev => ({
+      ...prev,
+      [questionId]: answerIndex
+    }));
+  };
+  
+  const handleQuizSubmit = () => {
+    // Calculate score
+    let correctCount = 0;
+    quizQuestions.forEach(question => {
+      if (quizAnswers[question.id] === question.correctAnswer) {
+        correctCount++;
+      }
+    });
     
-    // If user has solved enough challenges, call onSolve
-    if (newSuccessCount >= 5 && onSolve) {
+    const finalScore = Math.round((correctCount / quizQuestions.length) * 100);
+    setScore(finalScore);
+    setShowResults(true);
+    
+    // Complete the challenge if score is 80% or higher
+    if (finalScore >= 80 && onSolve) {
       setTimeout(() => {
         onSolve();
-      }, 1500);
-    } else {
-      // Set up a new challenge after a delay
-      setTimeout(() => {
-        setupNewChallenge();
-      }, 1500);
+      }, 2000);
     }
   };
-
+  
+  if (isQuizActive) {
+    return (
+      <div className="math-interactive hash-challenge">
+        <h3 className="math-interactive__title">Cryptographic Hash Functions - Quiz</h3>
+        
+        <div className="math-interactive__quiz">
+          {showResults ? (
+            <div className="math-interactive__quiz-results">
+              <h4>Quiz Results</h4>
+              <p>Your score: {score}%</p>
+              
+              {score >= 80 ? (
+                <div className="math-interactive__success-message">
+                  <p>Congratulations! You have successfully completed this challenge.</p>
+                  <p>Redirecting to the next challenge...</p>
+                </div>
+              ) : (
+                <div className="math-interactive__retry-message">
+                  <p>You need a score of at least 80% to complete this challenge.</p>
+                  <button 
+                    onClick={() => {
+                      setQuizAnswers({});
+                      setShowResults(false);
+                    }}
+                    className="math-interactive__submit"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              {quizQuestions.map((question, index) => (
+                <div key={question.id} className="math-interactive__quiz-question">
+                  <h4>Question {index + 1}</h4>
+                  <p>{question.question}</p>
+                  
+                  <div className="math-interactive__quiz-options">
+                    {question.options.map((option, optIndex) => (
+                      <div key={optIndex} className="math-interactive__quiz-option">
+                        <input
+                          type="radio"
+                          id={`${question.id}-${optIndex}`}
+                          name={question.id}
+                          checked={quizAnswers[question.id] === optIndex}
+                          onChange={() => handleQuizAnswer(question.id, optIndex)}
+                        />
+                        <label htmlFor={`${question.id}-${optIndex}`}>{option}</label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              
+              <button 
+                onClick={handleQuizSubmit}
+                className="math-interactive__submit"
+                disabled={Object.keys(quizAnswers).length < quizQuestions.length}
+              >
+                Submit Answers
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="math-interactive hash-challenge">
-      <h3 className="math-interactive__title">Hash Function Challenge</h3>
+      <h3 className="math-interactive__title">Cryptographic Hash Functions</h3>
       
-      <div className="math-interactive__description">
-        <p>
-          Hash functions are one-way functions that map input data of arbitrary size to a fixed-size output (hash).
-          {challengeType === 'forward' && " Given an input, calculate the hash value."}
-          {challengeType === 'preimage' && " Given a hash value, find an input that produces that hash."}
-          {challengeType === 'collision' && " Find two different inputs that produce the same hash value."}
-        </p>
-        <p className="math-interactive__formula">
-          Hash(input) mod {hashModulus}
-        </p>
-      </div>
-      
-      <div className="math-interactive__problem">
-        <p className="math-interactive__instruction">
-          {challengeType === 'forward' && `Calculate the hash value of "${input}" modulo ${hashModulus}.`}
-          {challengeType === 'preimage' && `Find any input that hashes to ${targetHash} modulo ${hashModulus}.`}
-          {challengeType === 'collision' && (
-            input 
-              ? `You entered "${input}" which hashes to ${simpleHash(input, hashModulus)}. Now enter a different input that also hashes to the same value.`
-              : `Find any input and we'll help you find a collision.`
-          )}
-        </p>
+      <div className="math-interactive__content">
+        <div className="math-interactive__stage">
+          <h4>{stages[currentStage].title}</h4>
+          <p>{stages[currentStage].content}</p>
+        </div>
         
-        <form onSubmit={handleSubmit} className="math-interactive__form">
-          <div className="math-interactive__input-group">
-            <input
-              type={challengeType === 'forward' ? 'number' : 'text'}
-              value={userAnswer}
-              onChange={(e) => setUserAnswer(e.target.value)}
-              placeholder={
-                challengeType === 'forward' 
-                  ? "Hash value" 
-                  : "Enter input"
-              }
-              min={challengeType === 'forward' ? 0 : undefined}
-              max={challengeType === 'forward' ? hashModulus - 1 : undefined}
-              required
-              className="math-interactive__input"
-            />
-            <button type="submit" className="math-interactive__submit">Check</button>
-          </div>
-        </form>
-
-        {isCorrect !== null && (
-          <div className={`math-interactive__feedback ${isCorrect ? 'math-interactive__feedback--correct' : 'math-interactive__feedback--incorrect'}`}>
-            {isCorrect ? (
-              <span>
-                {challengeType === 'forward' && `Correct! Hash("${input}") = ${targetHash} mod ${hashModulus}`}
-                {challengeType === 'preimage' && `Correct! Hash("${userAnswer}") = ${targetHash} mod ${hashModulus}`}
-                {challengeType === 'collision' && collisionFound && 
-                  `Collision found! Both "${collisionFound.input1}" and "${collisionFound.input2}" hash to ${collisionFound.hash} mod ${hashModulus}`
-                }
-              </span>
-            ) : (
-              <span>Incorrect. Try again or check the hint.</span>
+        {currentStage === 2 && (
+          <div className="math-interactive__hash-demo">
+            <div className="math-interactive__hash-input">
+              <label htmlFor="hash-input">Input Text:</label>
+              <textarea
+                id="hash-input"
+                value={inputText}
+                onChange={handleInputChange}
+                placeholder="Type something to hash..."
+                rows={3}
+                className="math-interactive__textarea"
+              />
+            </div>
+            
+            <div className="math-interactive__hash-output">
+              <h4>Hash Result:</h4>
+              <div className="math-interactive__hash-result">
+                {hashResult || "Hash will appear here"}
+              </div>
+              
+              <div className="math-interactive__hash-actions">
+                <button 
+                  onClick={handleAddToHistory}
+                  className="math-interactive__hash-button"
+                  disabled={!inputText}
+                >
+                  Add to History
+                </button>
+                
+                <button 
+                  onClick={handleFindCollision}
+                  className="math-interactive__hash-button"
+                >
+                  Demo Hash Collision
+                </button>
+              </div>
+            </div>
+            
+            {(hashHistory.length > 0 || showCollision) && (
+              <div className="math-interactive__hash-history">
+                <h4>Hash History:</h4>
+                <table className="math-interactive__hash-table">
+                  <thead>
+                    <tr>
+                      <th>Input</th>
+                      <th>Hash</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {hashHistory.map((entry, index) => (
+                      <tr key={index}>
+                        <td>{entry.input}</td>
+                        <td className={showCollision && index < 2 ? "math-interactive__collision-highlight" : ""}>
+                          {entry.hash}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                
+                {showCollision && (
+                  <div className="math-interactive__collision-note">
+                    <p>Note: For demonstration purposes, we're showing two inputs that produce hashes with similar patterns. In production-grade hash functions, finding actual collisions would be computationally infeasible.</p>
+                  </div>
+                )}
+              </div>
             )}
           </div>
         )}
-
-        <div className="math-interactive__hint-container">
-          <button
-            type="button"
-            onClick={() => setShowHint(!showHint)}
-            className="math-interactive__hint-button"
+        
+        {currentStage === 3 && (
+          <div className="math-interactive__merkle-demo">
+            <div className="math-interactive__merkle-visualization">
+              <h4>Merkle Tree Visualization</h4>
+              
+              <div className="math-interactive__merkle-tree">
+                {merkleTree.length > 0 && (
+                  <>
+                    {/* Root node */}
+                    <div className="math-interactive__merkle-level">
+                      <div className="math-interactive__merkle-node math-interactive__merkle-root">
+                        {merkleTree[merkleTree.length - 1].substring(0, 6)}...
+                      </div>
+                    </div>
+                    
+                    {/* Intermediate levels */}
+                    {merkleLeaves.length > 2 && (
+                      <div className="math-interactive__merkle-level">
+                        {merkleTree.slice(merkleLeaves.length, merkleLeaves.length + Math.ceil(merkleLeaves.length / 2)).map((hash, i) => (
+                          <div key={i} className="math-interactive__merkle-node math-interactive__merkle-internal">
+                            {hash.substring(0, 6)}...
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* Leaf nodes */}
+                    <div className="math-interactive__merkle-level">
+                      {merkleTree.slice(0, merkleLeaves.length).map((hash, i) => (
+                        <div 
+                          key={i} 
+                          className={`math-interactive__merkle-node math-interactive__merkle-leaf ${proofIndex === i ? 'math-interactive__merkle-selected' : ''}`}
+                          onClick={() => handleProofIndexChange(i)}
+                        >
+                          <div className="math-interactive__merkle-leaf-hash">
+                            {hash.substring(0, 6)}...
+                          </div>
+                          <div className="math-interactive__merkle-leaf-data">
+                            <input
+                              type="text"
+                              value={merkleLeaves[i]}
+                              onChange={(e) => handleLeafChange(i, e.target.value)}
+                              className="math-interactive__merkle-input"
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+            
+            <div className="math-interactive__merkle-proof">
+              <h4>Merkle Proof for Leaf {proofIndex}</h4>
+              
+              <div className="math-interactive__merkle-proof-steps">
+                <div className="math-interactive__merkle-proof-start">
+                  <div className="math-interactive__merkle-proof-leaf">
+                    <strong>Leaf Data:</strong> {merkleLeaves[proofIndex]}
+                  </div>
+                  <div className="math-interactive__merkle-proof-hash">
+                    <strong>Leaf Hash:</strong> {merkleTree[proofIndex]}
+                  </div>
+                </div>
+                
+                {merkleProof.map((node, i) => (
+                  <div key={i} className="math-interactive__merkle-proof-step">
+                    <div className="math-interactive__merkle-proof-direction">
+                      {node.position === 'left' ? 'Combine with LEFT node:' : 'Combine with RIGHT node:'}
+                    </div>
+                    <div className="math-interactive__merkle-proof-hash">
+                      {node.value}
+                    </div>
+                  </div>
+                ))}
+                
+                <div className="math-interactive__merkle-proof-result">
+                  <strong>Resulting Root:</strong> {merkleTree[merkleTree.length - 1]}
+                </div>
+                
+                <div className={`math-interactive__merkle-proof-verification ${
+                  verifyMerkleProof(merkleLeaves[proofIndex], merkleProof, merkleTree[merkleTree.length - 1]) 
+                    ? 'math-interactive__merkle-proof-valid' 
+                    : 'math-interactive__merkle-proof-invalid'
+                }`}>
+                  {verifyMerkleProof(merkleLeaves[proofIndex], merkleProof, merkleTree[merkleTree.length - 1])
+                    ? 'VERIFICATION PASSED: The proof correctly verifies against the root!'
+                    : 'VERIFICATION FAILED: The proof does not match the root!'}
+                </div>
+                
+                <div className="math-interactive__merkle-note">
+                  <p>Try changing a leaf value to see how it affects the proof verification.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <div className="math-interactive__navigation">
+          <button 
+            onClick={handlePrevStage}
+            disabled={currentStage === 0}
+            className="math-interactive__nav-button"
           >
-            {showHint ? 'Hide Hint' : 'Show Hint'}
+            Previous
           </button>
           
-          {showHint && (
-            <div className="math-interactive__hint">
-              {challengeType === 'forward' && (
-                <>
-                  <p>
-                    <strong>How to calculate a hash value:</strong>
-                  </p>
-                  <p>
-                    Our simplified hash function works like this:
-                  </p>
-                  <ol>
-                    <li>Start with hash = 0</li>
-                    <li>For each character in the input:</li>
-                    <ul>
-                      <li>Multiply the current hash by 31</li>
-                      <li>Add the ASCII code of the character</li>
-                      <li>Take the result modulo {hashModulus}</li>
-                    </ul>
-                  </ol>
-                  <p>
-                    For example, with input "{input[0] || 'a'}", the first step would be:
-                    <br />
-                    (0 * 31) + {input[0] ? input[0].charCodeAt(0) : 97} = {input[0] ? input[0].charCodeAt(0) : 97}
-                  </p>
-                </>
-              )}
-              
-              {challengeType === 'preimage' && (
-                <>
-                  <p>
-                    <strong>How to find a preimage:</strong>
-                  </p>
-                  <p>
-                    Finding a specific input that produces a given hash is generally difficult (that's why hash functions are used in cryptography).
-                    However, for our simple hash function and small modulus, you can try:
-                  </p>
-                  <ul>
-                    <li>Simple words or numbers</li>
-                    <li>Combinations of letters and numbers</li>
-                    <li>Try using words related to zero-knowledge proofs</li>
-                  </ul>
-                  <p>
-                    For reference, here's a partial list of words you can try: zero, knowledge, proof, math, commit, hash, crypto, secure, privacy, blockchain...
-                  </p>
-                </>
-              )}
-              
-              {challengeType === 'collision' && (
-                <>
-                  <p>
-                    <strong>How to find a collision:</strong>
-                  </p>
-                  <p>
-                    Because our hash function outputs values modulo {hashModulus}, there are only {hashModulus} possible hash values.
-                    By the pigeonhole principle, if we have more than {hashModulus} inputs, at least two must have the same hash.
-                  </p>
-                  <p>
-                    One approach to find collisions:
-                  </p>
-                  <ol>
-                    <li>Start with a word or number</li>
-                    <li>Try appending different characters or numbers to it</li>
-                    <li>Calculate the hash values and look for matches</li>
-                  </ol>
-                  <p>
-                    Try variations like "word1", "word2", etc. or completely different words.
-                  </p>
-                </>
-              )}
+          <div className="math-interactive__progress">
+            <span>Stage {currentStage + 1} of {stages.length}</span>
+            <div className="math-interactive__progress-bar">
+              <div 
+                className="math-interactive__progress-fill" 
+                style={{ width: `${((currentStage + 1) / stages.length) * 100}%` }}
+              ></div>
             </div>
-          )}
+          </div>
+          
+          <button 
+            onClick={handleNextStage}
+            className="math-interactive__nav-button"
+          >
+            {currentStage < stages.length - 1 ? "Next" : "Take Quiz"}
+          </button>
         </div>
       </div>
       
-      <div className="math-interactive__progress">
-        <p>Problems solved: {successCount}/5</p>
-        <div className="math-interactive__progress-bar">
-          <div
-            className="math-interactive__progress-fill"
-            style={{ width: `${(successCount / 5) * 100}%` }}
-          ></div>
-        </div>
+      <div className="math-interactive__zk-connection">
+        <h4>Connection to Zero-Knowledge Proofs:</h4>
+        <p>
+          Hash functions are fundamental building blocks in zero-knowledge protocols. They enable commitments that hide data while allowing proofs about it, form the basis of Merkle trees that efficiently represent large datasets, and provide the binding properties crucial for secure ZK systems. Without cryptographic hash functions, modern zero-knowledge proofs would be impractical.
+        </p>
       </div>
     </div>
   );
